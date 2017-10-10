@@ -1,5 +1,8 @@
 package com.diarranabe.graphics1.graphics1;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 /**
  * Created by diarranabe on 04/10/2017.
  */
@@ -14,15 +17,43 @@ public class Arc {
         this.fin = fin;
     }
 
+    /**
+     * *
+     * @param nwNode
+     * Remplace le debut de l'arc par nwNode
+     */
     private void updateDebut (Node nwNode){
         debut = nwNode;
     }
 
+    /**
+     * *
+     * @param nwNode
+     * Remplace la fin de l'arc par nwNode
+     */
     private void updateFin (Node nwNode){
         fin = nwNode;
     }
 
+    /**
+     *
+     * @param node
+     * @return true si node est concerné par l'arc
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean contains(Node node){
-        return node instanceof Node && (Node.superpo(debut, node) || Node.superpo(fin, node));
+        return node instanceof Node && (Node.overlap(debut, node) || Node.overlap(fin, node));
     }
+
+    /**
+     *
+     * @param n1
+     * @param n2
+     * @return true si les Nodes n1 et n2 sont reliés par l'arc
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean concerns(Node n1, Node n2){
+        return contains(n1) && contains(n2);
+    }
+
 }

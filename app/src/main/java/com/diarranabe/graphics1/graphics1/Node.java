@@ -16,9 +16,8 @@ public class Node {
     private float y;
     private Color color;
 
-    public static Color DEFAULT_COLOR = Color.valueOf(11,55,55);
-
-    public  static int RAYON = 20;
+    public static Color DEFAULT_COLOR = Color.valueOf(255,0,0);
+    public  static int NODE_RADIUS = 20;
 
     public Node(float x, float y) {
         this.x = x;
@@ -56,19 +55,45 @@ public class Node {
         this.color = color;
     }
 
+
+    /**
+     * Remplace les coodonnées d'un Node
+     * @param x
+     * @param y
+     */
     public void upadte(float x, float y){
         this.x = x;
         this.y = y;
     }
 
-    private boolean superpo(Node n){
-        return (Math.abs(x - n.getX())<RAYON) || (Math.abs(y - n.getY()) <RAYON);
+    /**
+     * Met un Node à jour
+     * @param x
+     * @param y
+     * @param color
+     */
+    public void upadte(float x, float y, Color color){
+        this.x = x;
+        this.y = y;
+        this.color = color;
     }
 
-    public static boolean superpo(Node n1, Node n2){
-        return n1.superpo(n2);
+    /**
+     * Vérifie si un Node chevauche un autre
+     * @param n
+     * @return true si oui
+     */
+    private boolean overlap(Node n){
+        return (Math.abs(x - n.getX())< NODE_RADIUS) || (Math.abs(y - n.getY()) < NODE_RADIUS);
+    }
+
+    /**
+     * Vérifie si deux Nodes se chevauchent
+     * @param n1
+     * @param n2
+     * @return true si oui
+     */
+    public static boolean overlap(Node n1, Node n2){
+        return n1.overlap(n2);
     }
 }
-
-
-// nabe
