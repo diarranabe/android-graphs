@@ -47,3 +47,6 @@ public class Node {
         return n1.superpo(n2);
     }
 }
+
+
+// nabe
