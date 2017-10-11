@@ -96,4 +96,14 @@ public class Node {
     public static boolean overlap(Node n1, Node n2){
         return n1.overlap(n2);
     }
+
+    /**
+     * Verifie si un Node est trop proche de d'une position
+     * @param x
+     * @param y
+     * @return true ou false
+     */
+    public boolean isClose(int x, int y){
+        return (Math.abs(this.x - x)< NODE_RADIUS) || (Math.abs(this.y - y)< NODE_RADIUS);
+    }
 }

@@ -61,4 +61,14 @@ public class Graph {
     public void removeArc(Arc arc){
         arcs.remove(arc);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean canDrawNode(int x, int y){
+        for(Node node: nodes){
+            if(node.isClose(x,y)){
+                return false;
+            }
+        }
+        return true;
+    }
 }
