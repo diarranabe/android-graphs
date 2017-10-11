@@ -14,20 +14,39 @@ import android.support.annotation.RequiresApi;
 public class Node {
     private float x;
     private float y;
+    private String etiquete;
     private Color color;
 
     public static Color DEFAULT_COLOR = Color.valueOf(255,0,0);
     public  static int NODE_RADIUS = 20;
+    public static String DEFAULT_ETIQ = "";
 
     public Node(float x, float y) {
         this.x = x;
         this.y = y;
-        color = DEFAULT_COLOR;
+        this.color = DEFAULT_COLOR;
+        this.etiquete = DEFAULT_ETIQ;
     }
 
     public Node(float x, float y, Color color) {
         this.x = x;
         this.y = y;
+        this.color = color;
+        this.etiquete = DEFAULT_ETIQ;
+    }
+
+    public Node(float x, float y, String etiquete) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.etiquete = etiquete;
+    }
+
+
+    public Node(float x, float y, String etiquete, Color color) {
+        this.x = x;
+        this.y = y;
+        this.etiquete = etiquete;
         this.color = color;
     }
 
@@ -45,6 +64,14 @@ public class Node {
 
     public void setY(float y) {
         this.y = y;
+    }
+
+    public String getEtiquete() {
+        return etiquete;
+    }
+
+    public void setEtiquete(String etiquete) {
+        this.etiquete = etiquete;
     }
 
     public Color getColor() {
@@ -75,6 +102,20 @@ public class Node {
     public void upadte(float x, float y, Color color){
         this.x = x;
         this.y = y;
+        this.color = color;
+    }
+
+    /**
+     * Met un Node à jour
+     * @param x
+     * @param y
+     * @param etiquete
+     * @param color
+     */
+    public void upadte(float x, float y, String etiquete, Color color){
+        this.x = x;
+        this.y = y;
+        this.etiquete = etiquete;
         this.color = color;
     }
 
