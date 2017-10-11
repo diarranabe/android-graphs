@@ -17,12 +17,28 @@ public class Arc {
         this.fin = fin;
     }
 
+    public Node getDebut() {
+        return debut;
+    }
+
+    public void setDebut(Node debut) {
+        this.debut = debut;
+    }
+
+    public Node getFin() {
+        return fin;
+    }
+
+    public void setFin(Node fin) {
+        this.fin = fin;
+    }
+
     /**
      * *
      * @param nwNode
      * Remplace le debut de l'arc par nwNode
      */
-    private void updateDebut (Node nwNode){
+    public void updateDebut (Node nwNode){
         debut = nwNode;
     }
 
@@ -31,7 +47,7 @@ public class Arc {
      * @param nwNode
      * Remplace la fin de l'arc par nwNode
      */
-    private void updateFin (Node nwNode){
+    public void updateFin (Node nwNode){
         fin = nwNode;
     }
 
@@ -56,4 +72,8 @@ public class Arc {
         return contains(n1) && contains(n2);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String toString (){
+        return debut.toString()+" --->  "+fin.toString();
+    }
 }
