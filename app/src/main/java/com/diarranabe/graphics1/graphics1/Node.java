@@ -16,9 +16,11 @@ public class Node {
     private float y;
     private String etiquete;
     private Color color;
+    private int radiaus;
 
     public static Color DEFAULT_COLOR = Color.valueOf(255,0,0);
-    public  static int NODE_RADIUS = 20;
+    public  static int DEFAULT_RADIUS = 20;
+    public  static int CHAR_LENGTH = 1;
     public static String DEFAULT_ETIQ = "";
 
     public Node(float x, float y) {
@@ -26,6 +28,7 @@ public class Node {
         this.y = y;
         this.color = DEFAULT_COLOR;
         this.etiquete = DEFAULT_ETIQ;
+        setRadiaus();
     }
 
     public Node(float x, float y, Color color) {
@@ -33,6 +36,7 @@ public class Node {
         this.y = y;
         this.color = color;
         this.etiquete = DEFAULT_ETIQ;
+        setRadiaus();
     }
 
     public Node(float x, float y, String etiquete) {
@@ -40,6 +44,7 @@ public class Node {
         this.y = y;
         this.color = color;
         this.etiquete = etiquete;
+        setRadiaus();
     }
 
 
@@ -48,6 +53,7 @@ public class Node {
         this.y = y;
         this.etiquete = etiquete;
         this.color = color;
+        setRadiaus();
     }
 
     public float getX() {
@@ -72,6 +78,7 @@ public class Node {
 
     public void setEtiquete(String etiquete) {
         this.etiquete = etiquete;
+        setRadiaus();
     }
 
     public Color getColor() {
@@ -82,6 +89,22 @@ public class Node {
         this.color = color;
     }
 
+    public int getRadiaus() {
+        return radiaus;
+    }
+
+    /**
+     * Met un rayon en fonction de l'etiquete
+     */
+    public void setRadiaus() {
+        switch (etiquete){
+            case "":
+                this.radiaus = DEFAULT_RADIUS;
+                break;
+            default:
+                this.radiaus = etiquete.length()*CHAR_LENGTH;
+        }
+    }
 
     /**
      * Remplace les coodonnées d'un Node
@@ -117,6 +140,7 @@ public class Node {
         this.y = y;
         this.etiquete = etiquete;
         this.color = color;
+        setRadiaus();
     }
 
     /**
@@ -125,7 +149,7 @@ public class Node {
      * @return true si oui
      */
     private boolean overlap(Node n){
-        return (Math.abs(x - n.getX())< NODE_RADIUS) || (Math.abs(y - n.getY()) < NODE_RADIUS);
+        return (Math.abs(x - n.getX())< DEFAULT_RADIUS) || (Math.abs(y - n.getY()) < DEFAULT_RADIUS);
     }
 
     /**
@@ -145,6 +169,6 @@ public class Node {
      * @return true ou false
      */
     public boolean isClose(int x, int y){
-        return (Math.abs(this.x - x)< NODE_RADIUS) || (Math.abs(this.y - y)< NODE_RADIUS);
+        return (Math.abs(this.x - x)< DEFAULT_RADIUS) || (Math.abs(this.y - y)< DEFAULT_RADIUS);
     }
 }
