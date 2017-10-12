@@ -3,6 +3,8 @@ package com.diarranabe.graphics1.graphics1;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.util.Collection;
+
 /**
  * Created by diarranabe on 04/10/2017.
  */
@@ -17,12 +19,28 @@ public class Arc {
         this.fin = fin;
     }
 
+    public Node getDebut() {
+        return debut;
+    }
+
+    public void setDebut(Node debut) {
+        this.debut = debut;
+    }
+
+    public Node getFin() {
+        return fin;
+    }
+
+    public void setFin(Node fin) {
+        this.fin = fin;
+    }
+
     /**
      * *
      * @param nwNode
      * Remplace le debut de l'arc par nwNode
      */
-    private void updateDebut (Node nwNode){
+    public void updateDebut (Node nwNode){
         debut = nwNode;
     }
 
@@ -31,7 +49,7 @@ public class Arc {
      * @param nwNode
      * Remplace la fin de l'arc par nwNode
      */
-    private void updateFin (Node nwNode){
+    public void updateFin (Node nwNode){
         fin = nwNode;
     }
 
@@ -56,4 +74,19 @@ public class Arc {
         return contains(n1) && contains(n2);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String toString (){
+        return debut.toString()+" --->  "+fin.toString();
+    }
+
+
+    /**
+     * Affiche les d'une collection d'arcs
+     * @param arcs
+     */
+    public static void printArcs(Collection<Arc> arcs){
+        for(Arc arc: arcs){
+            System.out.println(arc);
+        }
+    }
 }

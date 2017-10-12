@@ -3,36 +3,57 @@ package com.diarranabe.graphics1.graphics1;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by diarranabe on 04/10/2017.
  */
 
 public class Graph {
-    private Collection<Node> nodes;
-    private Collection<Arc> arcs;
+    private List<Node> nodes;
+    private List<Arc> arcs;
 
-    public Collection<Node> getNoeuds() {
+    public Graph() {
+        this.nodes = new ArrayList<Node>();
+    }
+
+    public List<Node> getNoeuds() {
         return nodes;
     }
 
-    public Collection<Arc> getArcs() {
+    public List<Arc> getArcs() {
         return arcs;
     }
 
     /**
-     *  Ajoute un nouveau Node
+     *  Ajoute un nouveau Node quand c'est possible
      * @param node
+     * @return true quand le Node est ajouté
      */
-    public void addNode(Node node) {
-        this.nodes.add(node);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean addNode(Node node) {
+        boolean overlap = false;
+
+        Iterator<Node> i=nodes.iterator();
+        while(i.hasNext()){
+            Node n = (Node)i.next();
+            if(Node.overlap(n,node)){
+                overlap = true;
+                break;
+            }
+        }
+        if (!overlap){
+            this.nodes.add(node);
+        }
+        return overlap;
     }
 
 
     /**
-     * Supprime un Node du graphe
+     * Supprime un Node du graphe en suppriment aussi tous les arcs qui lui sont reliés
      * @param node
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -41,8 +62,8 @@ public class Graph {
             if(arc.contains(node)){
                 arcs.remove(arc);
             }
-            nodes.remove(node);
         }
+        nodes.remove(node);
     }
 
 

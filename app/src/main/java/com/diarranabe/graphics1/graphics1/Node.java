@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.util.Collection;
+
 /**
  * Created by diarranabe on 04/10/2017.
  */
@@ -12,57 +14,63 @@ import android.support.annotation.RequiresApi;
 @RequiresApi(api = Build.VERSION_CODES.O)
 
 public class Node {
-    private float x;
-    private float y;
+    private int x;
+    private int y;
     private String etiquete;
     private Color color;
+    private int diameter;
 
-    public static Color DEFAULT_COLOR = Color.valueOf(255,0,0);
-    public  static int NODE_RADIUS = 20;
+    public static Color DEFAULT_COLOR = null;
+    public  static int DEFAULT_RADIUS = 20;
+    public  static int CHAR_LENGTH = 1;
     public static String DEFAULT_ETIQ = "";
 
-    public Node(float x, float y) {
+    public Node(int x, int y) {
         this.x = x;
         this.y = y;
         this.color = DEFAULT_COLOR;
         this.etiquete = DEFAULT_ETIQ;
+        setRadiaus();
     }
 
-    public Node(float x, float y, Color color) {
+    public Node(int x, int y, Color color) {
         this.x = x;
         this.y = y;
         this.color = color;
         this.etiquete = DEFAULT_ETIQ;
+        setRadiaus();
     }
 
-    public Node(float x, float y, String etiquete) {
+    public Node(int x, int y, String etiquete) {
         this.x = x;
         this.y = y;
         this.color = color;
         this.etiquete = etiquete;
+        setRadiaus();
     }
 
 
-    public Node(float x, float y, String etiquete, Color color) {
+    public Node(int x, int y, String etiquete, Color color) {
         this.x = x;
         this.y = y;
         this.etiquete = etiquete;
         this.color = color;
+        setRadiaus();
     }
 
-    public float getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(float x) {
+    public void setX(int x) {
         this.x = x;
     }
 
-    public float getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(float y) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -72,6 +80,7 @@ public class Node {
 
     public void setEtiquete(String etiquete) {
         this.etiquete = etiquete;
+        setRadiaus();
     }
 
     public Color getColor() {
@@ -82,13 +91,29 @@ public class Node {
         this.color = color;
     }
 
+    public int getDiameter() {
+        return diameter;
+    }
+
+    /**
+     * Met un rayon en fonction de l'etiquete
+     */
+    public void setRadiaus() {
+        switch (etiquete){
+            case "":
+                this.diameter = DEFAULT_RADIUS;
+                break;
+            default:
+                this.diameter = etiquete.length()*CHAR_LENGTH;
+        }
+    }
 
     /**
      * Remplace les coodonnées d'un Node
      * @param x
      * @param y
      */
-    public void upadte(float x, float y){
+    public void upadte(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -99,7 +124,7 @@ public class Node {
      * @param y
      * @param color
      */
-    public void upadte(float x, float y, Color color){
+    public void upadte(int x, int y, Color color){
         this.x = x;
         this.y = y;
         this.color = color;
@@ -112,11 +137,12 @@ public class Node {
      * @param etiquete
      * @param color
      */
-    public void upadte(float x, float y, String etiquete, Color color){
+    public void upadte(int x, int y, String etiquete, Color color){
         this.x = x;
         this.y = y;
         this.etiquete = etiquete;
         this.color = color;
+        setRadiaus();
     }
 
     /**
@@ -124,8 +150,8 @@ public class Node {
      * @param n
      * @return true si oui
      */
-    private boolean overlap(Node n){
-        return (Math.abs(x - n.getX())< NODE_RADIUS) || (Math.abs(y - n.getY()) < NODE_RADIUS);
+    public boolean overlap(Node n){
+        return (Math.abs(x - n.getX())< n.diameter) && (Math.abs(y - n.getY()) < n.diameter);
     }
 
     /**
@@ -135,7 +161,7 @@ public class Node {
      * @return true si oui
      */
     public static boolean overlap(Node n1, Node n2){
-        return n1.overlap(n2);
+        return n1.overlap(n2) || n2.overlap(n1);
     }
 
     /**
@@ -145,6 +171,21 @@ public class Node {
      * @return true ou false
      */
     public boolean isClose(int x, int y){
-        return (Math.abs(this.x - x)< NODE_RADIUS) || (Math.abs(this.y - y)< NODE_RADIUS);
+        return (Math.abs(this.x - x)< diameter) || (Math.abs(this.y - y)< diameter);
     }
+
+    public String toString (){
+        return "{("+x+","+y+"),"+etiquete+",color:"+color+"}";
+    }
+
+    /**
+     * Affiche les d'une collection
+     * @param nodes
+     */
+    public static void printNodes(Collection<Node> nodes){
+        for(Node node: nodes){
+            System.out.println(node);
+        }
+    }
+
 }
