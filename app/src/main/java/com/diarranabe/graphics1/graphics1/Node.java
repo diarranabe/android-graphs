@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.util.Collection;
+
 /**
  * Created by diarranabe on 04/10/2017.
  */
@@ -175,4 +177,15 @@ public class Node {
     public String toString (){
         return "{("+x+","+y+"),"+etiquete+",color:"+color+"}";
     }
+
+    /**
+     * Affiche les d'une collection
+     * @param nodes
+     */
+    public static void printNodes(Collection<Node> nodes){
+        for(Node node: nodes){
+            System.out.println(node);
+        }
+    }
+
 }

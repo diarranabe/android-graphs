@@ -3,6 +3,8 @@ package com.diarranabe.graphics1.graphics1;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import java.util.Collection;
+
 /**
  * Created by diarranabe on 04/10/2017.
  */
@@ -75,5 +77,16 @@ public class Arc {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String toString (){
         return debut.toString()+" --->  "+fin.toString();
+    }
+
+
+    /**
+     * Affiche les d'une collection d'arcs
+     * @param arcs
+     */
+    public static void printArcs(Collection<Arc> arcs){
+        for(Arc arc: arcs){
+            System.out.println(arc);
+        }
     }
 }
