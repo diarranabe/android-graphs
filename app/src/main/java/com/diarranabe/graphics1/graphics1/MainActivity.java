@@ -12,21 +12,22 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     ImageView champs;
-    Graph graph ;
+    Graph graph  =  new Graph() ;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        champs = (ImageView)findViewById(R.id.champs);
+        champs = (ImageView) findViewById(R.id.imageView);
         initialize() ;
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void initialize(){
-        Node n1 = new Node(250,250," N1 ", Color.valueOf(255,25,144));graph.addNode(n1);
+        Node n1 = new Node(250,250," N1 ", Color.valueOf(255,25,144));
+        graph.addNode(n1);
         Node n2 = new Node(250,250," N1 ", Color.valueOf(255,0,144));graph.addNode(n2);
         Node n3 = new Node(250,250," N1 ", Color.valueOf(255,25,0));graph.addNode(n3);
         Node n4 = new Node(250,250," N1 ", Color.valueOf(0,25,144));graph.addNode(n4);
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         Arc a2 = new Arc(n1,n2) ;graph.addArc(a2);
         Arc a3 = new Arc(n2,n4) ;graph.addArc(a3);
         Arc a4 = new Arc(n3,n5) ;graph.addArc(a4);
+
+
 
 
 

@@ -6,6 +6,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 /**
  * Created by matok on 11/10/2017.
  */
@@ -20,6 +24,8 @@ public class DrawableGraph extends View {
     int y = 0;
 
     Canvas canvas ;
+
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -38,11 +44,20 @@ public class DrawableGraph extends View {
     }
 
     public void kamiDraw(Graph graph){
+        List<Node> nodes = graph.getNoeuds();
+        List<Arc> arcs = graph.getArcs() ;
+        for (Node node: nodes ) {
+            drawNode(node);
+        }
+        for (Arc arc : arcs ) {
+                 drawArc(arc);
+        }
 
 
     }
 
     private void drawArc(Arc arc){
+
 
     }
     private void drawNode(Node node){

@@ -18,6 +18,7 @@ public class Graph {
 
     public Graph() {
         this.nodes = new ArrayList<Node>();
+        this.arcs = new ArrayList<Arc>();
     }
 
     public List<Node> getNoeuds() {
