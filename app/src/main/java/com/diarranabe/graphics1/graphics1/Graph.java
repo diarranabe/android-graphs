@@ -7,17 +7,38 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by diarranabe on 04/10/2017.
  */
 
 public class Graph {
-    private List<Node> nodes;
-    private List<Arc> arcs;
+
+    public static int MAX_X = 500;
+    public static int MAX_Y = 500;
+    private List<Node> nodes = new ArrayList<Node>();
+    private List<Arc> arcs = new ArrayList<Arc>();
 
     public Graph() {
-        this.nodes = new ArrayList<Node>();
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Graph(int n) {
+        Random rand = new Random();
+        for (int i=0; i<n; i++){
+            int  x = Node.getRandomCoord(MAX_X);
+            int  y = Node.getRandomCoord(MAX_Y);
+            Node node = new Node(x,y);
+            node = new Node(x,y);
+            boolean add = addNode(node);
+            while (!add ){
+                x = Node.getRandomCoord(MAX_X);
+                y = Node.getRandomCoord(MAX_Y);
+                node = new Node(x,y);
+            }
+        }
     }
 
     public List<Node> getNoeuds() {
@@ -48,7 +69,7 @@ public class Graph {
         if (!overlap){
             this.nodes.add(node);
         }
-        return overlap;
+        return !overlap; // prouve que le node à bien de l'espace
     }
 
 
@@ -66,6 +87,23 @@ public class Graph {
         nodes.remove(node);
     }
 
+    /**
+     * Supprime le Node à la position nodeIndex du graphe en suppriment aussi tous les arcs qui lui sont reliés
+     * @param nodeIndex
+     */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void removeNode(int nodeIndex){
+        if (nodeIndex<nodes.size()){
+            Node node = nodes.get(nodeIndex);
+            for(Arc arc: arcs){
+                if(arc.contains(node)){
+                    arcs.remove(arc);
+                }
+            }
+            nodes.remove(node);
+        }
+    }
+
 
     /**
      * Ajoute un Arc
@@ -76,6 +114,20 @@ public class Graph {
     }
 
     /**
+     * Ajoute un arc entre les nodes index1 et index2 de la liste de nodes
+     * @param index1
+     * @param index2
+     */
+    public void addArc(int index1, int index2) {
+        if (index1 != index2){
+            Node n1 = getNoeuds().get(index1);
+            Node n2 = getNoeuds().get(index2);
+            this.arcs.add(new Arc(n1,n2));
+        }
+
+    }
+
+    /**
      * Supprime un Arc du graphe
      * @param arc
      */
@@ -83,6 +135,20 @@ public class Graph {
         arcs.remove(arc);
     }
 
+    /**
+     * Supprime l'Arc à la position arcIndex des arcs du graphe
+     * @param arcIndex
+     */
+    public void removeArc(int arcIndex){
+        arcs.remove(getArcs().get(arcIndex));
+    }
+
+    /**
+     * Verifie si on peut ajouter à un un emplacement
+     * @param x
+     * @param y
+     * @return true si possible
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean canDrawNode(int x, int y){
         for(Node node: nodes){
@@ -91,5 +157,40 @@ public class Graph {
             }
         }
         return true;
+    }
+
+    /**
+     * Retoune l'index d'un Node de manière aléatoire
+     * @return un index
+     */
+    public int getRandomNodeIndex(){
+        Random rand = new Random();
+        int  x = rand.nextInt(getNoeuds().size());
+        return x;
+    }
+
+    /**
+     * Ajoute n arcs de manière aléatoire (n<=nombre de nodes)
+     */
+    public void addRandomArcs(){
+        for (int i = 0; i<nodes.size(); i++){
+            addArc(getRandomNodeIndex(),getRandomNodeIndex());
+        }
+    }
+
+    /**
+     * Ajoute n arcs de manière aléatoire (n<=nombre de nodes)
+     * @param n si n > nombre de nodes il est ignoré, addRandomArcs() est executé
+     *
+     */
+    public void addRandomArcs(int n){
+        if (n<nodes.size()){
+            for (int i = 0; i<n; i++){
+                addArc(getRandomNodeIndex(),getRandomNodeIndex());
+            }
+        }
+        else {
+            addRandomArcs();
+        }
     }
 }

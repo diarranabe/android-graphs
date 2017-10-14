@@ -12,9 +12,7 @@ import java.util.Collection;
 public class Arc {
     private Node debut;
     private Node fin;
-
     public Arc(Node debut, Node fin) {
-
         this.debut = debut;
         this.fin = fin;
     }
@@ -88,5 +86,6 @@ public class Arc {
         for(Arc arc: arcs){
             System.out.println(arc);
         }
+        System.out.println(arcs.size()+" items -----------------");
     }
 }

@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.Collection;
+import java.util.Random;
 
 /**
  * Created by diarranabe on 04/10/2017.
@@ -186,6 +187,13 @@ public class Node {
         for(Node node: nodes){
             System.out.println(node);
         }
+        System.out.println(nodes.size()+" items -----------------");
+    }
+
+    public static int getRandomCoord(int max){
+        Random rand = new Random();
+        int  x = rand.nextInt(max) + 1;
+        return (x/DEFAULT_RADIUS)*DEFAULT_RADIUS;
     }
 
 }
