@@ -1,10 +1,48 @@
 package com.diarranabe.graphics1.graphics1;
 
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.IntentSender;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.UserHandle;
+import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.RequiresPermission;
+import android.support.annotation.StringDef;
+import android.support.annotation.StyleRes;
+import android.view.Display;
+import android.widget.Button;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -79,12 +117,16 @@ public class Graph {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void removeNode(Node node){
-        for(Arc arc: arcs){
-            if(arc.contains(node)){
-                arcs.remove(arc);
+        try {
+            for(Arc arc: arcs){
+                if(arc.contains(node)){
+                    arcs.remove(arc);
+                }
             }
+            nodes.remove(node);
+        }catch (ConcurrentModificationException e){
+            removeNode(node);
         }
-        nodes.remove(node);
     }
 
     /**
