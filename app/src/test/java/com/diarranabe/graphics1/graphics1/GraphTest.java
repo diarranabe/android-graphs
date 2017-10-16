@@ -170,5 +170,4 @@ public class GraphTest {
         Arc.printArcs(graph.getArcs());
         assertEquals(3,3);
     }
-
 }

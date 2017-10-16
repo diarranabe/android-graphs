@@ -1,7 +1,6 @@
 package com.diarranabe.graphics1.graphics1;
 
 import android.os.Build;
-import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 
 import org.junit.Test;
@@ -27,13 +26,13 @@ public class ArcTest {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Test
-    public void updateDebut() throws Exception {
+    public void setDebut() throws Exception {
         Node n1 = new Node(5,2);
         Node n2 = new Node(15,12);
         Node n3 = new Node(85,52);
         Arc arc = new Arc(n1,n2);
         System.out.println("Avant update : "+arc);
-        arc.updateDebut(n3);
+        arc.setDebut(n3);
         System.out.println("Après update : "+arc);
         assertNotEquals(arc.getDebut().getX(),n1.getX());
     }
@@ -41,13 +40,13 @@ public class ArcTest {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Test
-    public void updateFin() throws Exception {
+    public void setFin() throws Exception {
         Node n1 = new Node(5,2);
         Node n2 = new Node(15,12);
         Node n3 = new Node(85,52);
         Arc arc = new Arc(n1,n2);
         System.out.println("Avant update : "+arc);
-        arc.updateFin(n3);
+        arc.setFin(n3);
         System.out.println("Après update : "+arc);
         assertNotEquals(arc.getDebut().getX(),n2.getX());
     }

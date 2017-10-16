@@ -195,5 +195,4 @@ public class Node {
         int  x = rand.nextInt(max) + 1;
         return (x/DEFAULT_RADIUS)*DEFAULT_RADIUS;
     }
-
 }
