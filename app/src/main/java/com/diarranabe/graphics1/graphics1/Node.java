@@ -149,7 +149,7 @@ public class Node {
      * @return true si oui
      */
     public boolean overlap(Node n){
-        return (Math.abs(x - n.getX())< n.diameter) && (Math.abs(y - n.getY()) < n.diameter);
+        return (Math.abs(x - n.getX())< this.diameter) && (Math.abs(y - n.getY()) < this.diameter);
     }
 
     /**
