@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -149,7 +150,8 @@ public class Node {
      * @return true si oui
      */
     public boolean overlap(Node n){
-        return (Math.abs(x - n.getX())< this.diameter) && (Math.abs(y - n.getY()) < this.diameter);
+        return (Math.abs(x - n.getX())< 100) && (Math.abs(y - n.getY()) < 100);
+//        return (Math.abs(x - n.getX())< this.diameter) && (Math.abs(y - n.getY()) < this.diameter);
     }
 
     /**
@@ -173,7 +175,7 @@ public class Node {
     }
 
     public String toString (){
-        return "{("+x+","+y+"),"+etiquete+",color:"+color+"}";
+        return "{(x:"+x+",y:"+y+",d:"+diameter+"),"+etiquete+",color:"+color+"}";
     }
 
     /**
@@ -186,6 +188,7 @@ public class Node {
         }
         System.out.println(nodes.size()+" items -----------------");
     }
+
 
     public static int getRandomCoord(int max){
         Random rand = new Random();

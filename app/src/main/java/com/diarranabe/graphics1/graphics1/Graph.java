@@ -31,6 +31,7 @@ import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringDef;
 import android.support.annotation.StyleRes;
+import android.util.Log;
 import android.view.Display;
 import android.widget.Button;
 
@@ -53,8 +54,8 @@ import java.util.Random;
 
 public class Graph {
 
-    public static int MAX_X = 700;
-    public static int MAX_Y = 1000;
+    public static int MAX_X = 600;
+    public static int MAX_Y = 900;
     private List<Node> nodes = new ArrayList<Node>();
     private List<Arc> arcs = new ArrayList<Arc>();
 
@@ -94,7 +95,7 @@ public class Graph {
     public boolean addNode(Node node) {
         boolean overlap = false;
 
-       /* Iterator<Node> i=nodes.iterator();
+        Iterator<Node> i=nodes.iterator();
         while(i.hasNext()){
             Node n = (Node)i.next();
             if(Node.overlap(n,node)){
@@ -104,8 +105,8 @@ public class Graph {
         }
         if (!overlap){
             this.nodes.add(node);
-        }*/
-        return overlap; // prouve que le node à bien de l'espace
+        }
+        return !overlap; // prouve que le node à bien de l'espace
     }
 
 
@@ -143,7 +144,8 @@ public class Graph {
         Iterator<Node> i=nodes.iterator();
         while(i.hasNext()){
             Node n = (Node)i.next();
-            if(Node.overlap(n,node)){
+            if(n.isClose(x,y)){
+                n.setX(n.getY()*3);
                 overlap = true;
                 break;
             }
@@ -159,7 +161,6 @@ public class Graph {
      * Supprime un Node du graphe en suppriment aussi tous les arcs qui lui sont reliés
      * @param node
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void removeNode(Node node){
         try {
             for(Arc arc: arcs){
@@ -235,7 +236,6 @@ public class Graph {
      * @param y
      * @return true si possible
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean canDrawNode(int x, int y){
         for(Node node: nodes){
             if(node.isClose(x,y)){
@@ -278,5 +278,12 @@ public class Graph {
         else {
             addRandomArcs();
         }
+    }
+
+    public void print(){
+        System.out.println("------------- Graphe ---------------");
+        Node.printNodes(this.nodes);
+        Arc.printArcs(this.arcs);
+        Log.d("DNXX",Node.toString(nodes)+Arc.toString(arcs));
     }
 }

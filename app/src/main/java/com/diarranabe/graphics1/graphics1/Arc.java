@@ -4,6 +4,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by diarranabe on 04/10/2017.
@@ -12,6 +13,7 @@ import java.util.Collection;
 public class Arc {
     private Node debut;
     private Node fin;
+
     public Arc(Node debut, Node fin) {
         this.debut = debut;
         this.fin = fin;
@@ -31,48 +33,44 @@ public class Arc {
 
     /**
      * *
-     * @param nwNode
-     * Remplace le debut de l'arc par nwNode
+     *
+     * @param nwNode Remplace le debut de l'arc par nwNode
      */
-    public void setDebut(Node nwNode){
+    public void setDebut(Node nwNode) {
         debut = nwNode;
     }
 
     /**
-     *
      * @param node
      * @return true si node est concerné par l'arc
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public boolean contains(Node node){
+    public boolean contains(Node node) {
         return node instanceof Node && (Node.overlap(debut, node) || Node.overlap(fin, node));
     }
 
     /**
-     *
      * @param n1
      * @param n2
      * @return true si les Nodes n1 et n2 sont reliés par l'arc
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public boolean concerns(Node n1, Node n2){
+    public boolean concerns(Node n1, Node n2) {
         return contains(n1) && contains(n2);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public String toString (){
-        return debut.toString()+" --->  "+fin.toString();
+    public String toString() {
+        return debut.toString() + " --->  " + fin.toString();
     }
 
 
     /**
      * Affiche les d'une collection d'arcs
+     *
      * @param arcs
      */
-    public static void printArcs(Collection<Arc> arcs){
-        for(Arc arc: arcs){
+    public static void printArcs(Collection<Arc> arcs) {
+        for (Arc arc : arcs) {
             System.out.println(arc);
         }
-        System.out.println(arcs.size()+" items -----------------");
+        System.out.println(arcs.size() + " items -----------------");
     }
 }
