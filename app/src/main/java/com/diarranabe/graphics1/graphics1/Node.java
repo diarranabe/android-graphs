@@ -20,8 +20,8 @@ public class Node {
     private int diameter;
 
     public static int DEFAULT_COLOR = Color.BLACK;
-    public  static int DEFAULT_RADIUS = 20;
-    public  static int CHAR_LENGTH = 1;
+    public  static int DEFAULT_RADIUS = 45;
+    public  static int CHAR_LENGTH = 12;
     public static String DEFAULT_ETIQ = "";
 
     public Node(int x, int y) {
