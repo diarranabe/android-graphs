@@ -21,10 +21,6 @@ public class Arc {
         return debut;
     }
 
-    public void setDebut(Node debut) {
-        this.debut = debut;
-    }
-
     public Node getFin() {
         return fin;
     }
@@ -38,17 +34,8 @@ public class Arc {
      * @param nwNode
      * Remplace le debut de l'arc par nwNode
      */
-    public void updateDebut (Node nwNode){
+    public void setDebut(Node nwNode){
         debut = nwNode;
-    }
-
-    /**
-     * *
-     * @param nwNode
-     * Remplace la fin de l'arc par nwNode
-     */
-    public void updateFin (Node nwNode){
-        fin = nwNode;
     }
 
     /**

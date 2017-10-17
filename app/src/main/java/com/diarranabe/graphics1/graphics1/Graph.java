@@ -125,7 +125,7 @@ public class Graph {
             }
             nodes.remove(node);
         }catch (ConcurrentModificationException e){
-            removeNode(node);
+            removeNode(node); // passe 1 fois sur 4 donc executé plusieurs fois par appel
         }
     }
 
