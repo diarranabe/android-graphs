@@ -92,7 +92,7 @@ public class Graph {
      * @return true quand le Node est ajouté
      */
     public boolean addNode(Node node) {
-        boolean overlap = false;
+        boolean overlap = true;
 
         Iterator<Node> i=nodes.iterator();
         while(i.hasNext()){
@@ -106,6 +106,25 @@ public class Graph {
             this.nodes.add(node);
         }
         return !overlap; // prouve que le node à bien de l'espace
+    }
+
+
+    /**
+     * Retourne le node selectionné
+     * @param node
+     * @return
+     */
+    public Node selectedNode(Node node) {
+        boolean overlap = false;
+
+        Iterator<Node> i=nodes.iterator();
+        while(i.hasNext()){
+            Node n = (Node)i.next();
+            if(Node.overlap(n,node)){
+                return n;
+            }
+        }
+        return null;
     }
 
 
