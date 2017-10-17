@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class DrawableGraph extends View {
     int x = 50;
     int y = 50;
 
-    Canvas canvas ;
+    Canvas canvas = new Canvas() ;
 
 
 
@@ -34,7 +35,7 @@ public class DrawableGraph extends View {
         // TODO Auto-generated method stub
         super.onDraw(canvas);
         this.canvas = canvas ;
-        int radius;
+       /* int radius;
         radius = 25;
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
@@ -42,7 +43,8 @@ public class DrawableGraph extends View {
         canvas.drawPaint(paint);
         // Use Color.parseColor to define HTML colors
         paint.setColor(Color.parseColor("#CD5C5C"));
-        canvas.drawCircle(x , y , radius, paint);
+        canvas.drawCircle(x , y , radius, paint);*/
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -71,13 +73,22 @@ public class DrawableGraph extends View {
         }else {
             radius =75;
         }
+
+        radius = 25;
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
-
-       // canvas.drawPaint(paint);
+        paint.setColor(Color.WHITE);
+        canvas.drawPaint(paint);
         // Use Color.parseColor to define HTML colors
         paint.setColor(Color.parseColor("#CD5C5C"));
-        canvas.drawCircle(node.getX() , node.getY() , radius, paint);
+        canvas.drawCircle(x , y , radius, paint);
+
+
+        Log.d("XXXX"," Info  => drawNode +> " + node.getEtiquete());
+       // canvas.drawPaint(paint);
+        // Use Color.parseColor to define HTML colors
+        //paint.setColor(Color.BLACK);
+       // canvas.drawCircle( ,  , radius, paint);
 
     }
 }

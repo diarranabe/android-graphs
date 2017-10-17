@@ -12,16 +12,15 @@ import java.util.Random;
  * Created by diarranabe on 04/10/2017.
  */
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 
 public class Node {
     private int x;
     private int y;
     private String etiquete;
-    private Color color;
+    private int color;
     private int diameter;
 
-    public static Color DEFAULT_COLOR = null;
+    public static int DEFAULT_COLOR = Color.BLACK;
     public  static int DEFAULT_RADIUS = 20;
     public  static int CHAR_LENGTH = 1;
     public static String DEFAULT_ETIQ = "";
@@ -34,7 +33,7 @@ public class Node {
         setRadiaus();
     }
 
-    public Node(int x, int y, Color color) {
+    public Node(int x, int y, int color) {
         this.x = x;
         this.y = y;
         this.color = color;
@@ -51,11 +50,11 @@ public class Node {
     }
 
 
-    public Node(int x, int y, String etiquete, Color color) {
+    public Node(int x, int y, String etiquete, int color) {
         this.x = x;
         this.y = y;
         this.etiquete = etiquete;
-        this.color = color;
+        this.color = Color.BLACK;
         setRadiaus();
     }
 
@@ -84,11 +83,11 @@ public class Node {
         setRadiaus();
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
@@ -125,7 +124,7 @@ public class Node {
      * @param y
      * @param color
      */
-    public void upadte(int x, int y, Color color){
+    public void upadte(int x, int y, int color){
         this.x = x;
         this.y = y;
         this.color = color;
@@ -138,7 +137,7 @@ public class Node {
      * @param etiquete
      * @param color
      */
-    public void upadte(int x, int y, String etiquete, Color color){
+    public void upadte(int x, int y, String etiquete, int color){
         this.x = x;
         this.y = y;
         this.etiquete = etiquete;
