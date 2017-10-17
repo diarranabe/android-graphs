@@ -38,7 +38,6 @@ public class ArcTest {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Test
     public void setFin() throws Exception {
         Node n1 = new Node(5,2);
@@ -52,7 +51,6 @@ public class ArcTest {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Test
     public void contains1() throws Exception {
         Node n1 = new Node(5,2);

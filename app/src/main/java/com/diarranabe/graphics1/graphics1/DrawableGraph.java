@@ -47,7 +47,6 @@ public class DrawableGraph extends View {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void kamiDraw(Graph graph){
         List<Node> nodes = graph.getNoeuds();
         List<Arc> arcs = graph.getArcs() ;
@@ -65,7 +64,6 @@ public class DrawableGraph extends View {
 
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void drawNode(Node node){
         int radius;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

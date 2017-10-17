@@ -1,6 +1,5 @@
 package com.diarranabe.graphics1.graphics1;
 
-
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -48,7 +47,6 @@ public class Node {
         this.etiquete = etiquete;
         setRadiaus();
     }
-
 
     public Node(int x, int y, String etiquete, int color) {
         this.x = x;

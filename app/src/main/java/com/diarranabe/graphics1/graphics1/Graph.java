@@ -53,8 +53,8 @@ import java.util.Random;
 
 public class Graph {
 
-    public static int MAX_X = 500;
-    public static int MAX_Y = 500;
+    public static int MAX_X = 700;
+    public static int MAX_Y = 1000;
     private List<Node> nodes = new ArrayList<Node>();
     private List<Arc> arcs = new ArrayList<Arc>();
 
@@ -62,7 +62,6 @@ public class Graph {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public Graph(int n) {
         Random rand = new Random();
         for (int i=0; i<n; i++){
@@ -92,8 +91,32 @@ public class Graph {
      * @param node
      * @return true quand le Node est ajouté
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean addNode(Node node) {
+        boolean overlap = false;
+
+        Iterator<Node> i=nodes.iterator();
+        while(i.hasNext()){
+            Node n = (Node)i.next();
+            if(Node.overlap(n,node)){
+                overlap = true;
+                break;
+            }
+        }
+        if (!overlap){
+            this.nodes.add(node);
+        }
+        return !overlap; // prouve que le node à bien de l'espace
+    }
+
+
+    /**
+     *  Ajoute un nouveau Node quand c'est possible
+     * @param x
+     * @param y
+     * @return true quand le Node est ajouté
+     */
+    public boolean addNode(int x, int y) {
+        Node node = new Node(x,y);
         boolean overlap = false;
 
         Iterator<Node> i=nodes.iterator();
