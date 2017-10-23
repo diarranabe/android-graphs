@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case MotionEvent.ACTION_MOVE:
+
                        /* umpx = (int) event.getX();
                         umpy = (int) event.getY();
 
