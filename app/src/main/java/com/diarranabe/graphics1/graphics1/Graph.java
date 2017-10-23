@@ -31,6 +31,7 @@ import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringDef;
 import android.support.annotation.StyleRes;
+import android.util.Log;
 import android.view.Display;
 import android.widget.Button;
 
@@ -51,7 +52,7 @@ import java.util.Random;
  * Created by diarranabe on 04/10/2017.
  */
 
-public class Graph {
+public class  Graph {
 
     public static int MAX_X = 700;
     public static int MAX_Y = 1000;
@@ -94,7 +95,7 @@ public class Graph {
     public boolean addNode(Node node) {
         boolean overlap = false;
 
-       /* Iterator<Node> i=nodes.iterator();
+        Iterator<Node> i=nodes.iterator();
         while(i.hasNext()){
             Node n = (Node)i.next();
             if(Node.overlap(n,node)){
@@ -104,8 +105,8 @@ public class Graph {
         }
         if (!overlap){
             this.nodes.add(node);
-        }*/
-        return overlap; // prouve que le node à bien de l'espace
+        }
+        return !overlap; // prouve que le node à bien de l'espace
     }
 
 
@@ -123,7 +124,10 @@ public class Graph {
         while(i.hasNext()){
             Node n = (Node)i.next();
             if(Node.overlap(n,node)){
+
+                Log.i("XXXX", "Voici ton objey");
                 return n;
+
             }
         }
         return null;
@@ -141,14 +145,15 @@ public class Graph {
         boolean overlap = false;
 
         Iterator<Node> i=nodes.iterator();
-        while(i.hasNext()){
-            Node n = (Node)i.next();
+        baka:while(i.hasNext()){
+            Node n =  i.next();
             if(Node.overlap(n,node)){
                 overlap = true;
-                break;
+                break baka;
             }
         }
         if (!overlap){
+            Log.e("XXXX", " ok n'existe pas "+ overlap);
             this.nodes.add(node);
         }
         return !overlap; // prouve que le node à bien de l'espace
@@ -159,7 +164,7 @@ public class Graph {
      * Supprime un Node du graphe en suppriment aussi tous les arcs qui lui sont reliés
      * @param node
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public void removeNode(Node node){
         try {
             for(Arc arc: arcs){

@@ -43,7 +43,7 @@ public class Arc {
      * @param node
      * @return true si node est concerné par l'arc
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public boolean contains(Node node){
         return node instanceof Node && (Node.overlap(debut, node) || Node.overlap(fin, node));
     }
@@ -54,12 +54,12 @@ public class Arc {
      * @param n2
      * @return true si les Nodes n1 et n2 sont reliés par l'arc
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public boolean concerns(Node n1, Node n2){
         return contains(n1) && contains(n2);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     public String toString (){
         return debut.toString()+" --->  "+fin.toString();
     }

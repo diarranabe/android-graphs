@@ -4,23 +4,21 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
     ImageView zzst;
     Bitmap bitmap;
-    Paint paint;
+    Paint paint, painte;
     Canvas canvas;
+
+    Boolean supOne = false;
 
 
     int downx = 50;
@@ -29,7 +27,14 @@ public class MainActivity extends AppCompatActivity {
     int upx = 0;
     int upy = 0;
 
-    Graph graph = new Graph(5);
+    int umpx = 0;
+    int umpy = 0;
+
+    private static Graph graph;
+
+    static {
+        graph = new Graph(5);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +62,13 @@ public class MainActivity extends AppCompatActivity {
         bitmap = Bitmap.createBitmap(currentDisplay.getWidth(), currentDisplay.getHeight(),
                 Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
-
+        canvas.save();
         paint = new Paint();
-        paint.setColor(Color.BLACK);
+        painte = new Paint();
+        painte.setColor(Color.WHITE);
+        paint.setColor(Color.DKGRAY);
 
         zzst.setImageBitmap(bitmap);
-        zzst.setColorFilter(Color.BLUE);
 
 
         initialize();
@@ -74,24 +80,44 @@ public class MainActivity extends AppCompatActivity {
                 int action = event.getAction();
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
-                        downx = (int)event.getX();
-                        downy = (int)event.getY();
+
+                        downx = (int) event.getX();
+                        downy = (int) event.getY();
+
+                        Node auxNode = graph.selectedNode(downx, downy);
+                        if (null != auxNode) {
+                           unDrawNode(auxNode);
+                            graph.removeNode(auxNode);
+                            initialize();
+                            supOne = true;
+                        }
+
+
                         break;
                     case MotionEvent.ACTION_MOVE:
+                       /* umpx = (int) event.getX();
+                        umpy = (int) event.getY();
+
+                        Node auxNode = graph.selectedNode(downx, downy);
+                        if (auxNode != null)
+                            unDrawNode(auxNode);
+                        auxNode.setX(umpx);
+                        auxNode.setY(umpy);
+                        drawNode(auxNode);
+                        zzst.invalidate();*/
+
 
                         break;
                     case MotionEvent.ACTION_UP:
-                        upx = (int)event.getX();
-                        upy = (int)event.getY();
-                        if( (Math.abs(upx - downx)< 10) ||  (Math.abs(upy - downy)< 10)) {
-                            if (graph.addNode(upx,upy))initialize();
-                            Log.d("XXXX", "nodeH => " +upx + " nodeW => " + upy + " nodeName touch");
-                            canvas.drawCircle(upx, upy, 45, paint);
+                        upx = (int) event.getX();
+                        upy = (int) event.getY();
+                        if (!supOne) {
+                            if ((Math.abs(upx - downx) < 10) && (Math.abs(upy - downy) < 10)) {
+                                if (graph.addNode(upx, upy)) initialize();
+                            }
                         } else {
-
-
+                            supOne = false;
                         }
-                        zzst.invalidate();
                         break;
                     case MotionEvent.ACTION_CANCEL:
                         break;
@@ -105,9 +131,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initialize() {
+
+        int ic = 0;
         for (Node node : graph.getNoeuds()) {
             drawNode(node);
+            ic++;
         }
+        if (ic == 0) {
+            canvas.drawCircle(0, 0, 1500, painte);
+            Log.e("XXXX", " ===> Winter " + ic);
+        }
+        Log.e("XXXX", " ===> ic =  " + ic);
 
 
     }
@@ -115,7 +149,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void drawNode(Node node) {
         Log.d("XXXX", "nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete());
-        canvas.drawCircle(node.getX(), node.getY(), 45, paint);
+        canvas.drawCircle(node.getX(), node.getY(), node.getDiameter(), paint);
         zzst.invalidate();
     }
+
+    public void unDrawNode(Node node)  {
+        canvas.drawCircle(node.getX(), node.getY(), node.getDiameter() + 3, painte);
+    }
+
+
 }
+
