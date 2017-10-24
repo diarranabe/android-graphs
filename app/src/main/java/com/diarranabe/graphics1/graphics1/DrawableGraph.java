@@ -4,9 +4,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +24,7 @@ import android.widget.ImageView;
  * Created by matok on 24/10/2017.
  */
 
-public class DrawableGraph extends View implements View.OnTouchListener {
+public class DrawableGraph extends Drawable {
 
 
     Paint paint, painte;
@@ -43,52 +50,22 @@ public class DrawableGraph extends View implements View.OnTouchListener {
 
     }
 
-    private static Graph graph;
+    private static Graph graph = new Graph(5);
 
-    public DrawableGraph(Context context) {
-        super(context);
-        this.setOnTouchListener(this);
-
-        paint = new Paint();
-        painte = new Paint();
-        paint.setColor(Color.DKGRAY);
-        painte.setColor(Color.WHITE);
-
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        this.canvas =  canvas ;
-        if (tempArc){
-
-        }
-
-
-    }
-
-
-    public void initialize() {
-
-        int ic = 0;
-        for (Node node : graph.getNoeuds()) {
-            drawNode(node);
-            ic++;
-        }
-        if (ic == 0) {
-            canvas.drawCircle(0, 0, 1500, painte);
-            Log.e("XXXX", " ===> Winter " + ic);
-        }
-        Log.e("XXXX", " ===> ic =  " + ic);
-        this.invalidate();
-
-    }
 
 
     public void drawNode(Node node) {
         Log.d("XXXX", "nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete());
         canvas.drawCircle(node.getX(), node.getY(), node.getDiameter(), paint);
-        this.invalidate();
+        //this.invalidate();
+/*
+        float radius = 20;
+        final RectF oval = new RectF();
+        oval.set(node.getX() - radius, node.getY()- radius, node.getY()+50 + radius, node.getX()+50+ radius);
+        Path myPath = new Path();
+        int startAngle = (int) (180 / Math.PI * Math.atan2(node.getY() - node.getX()+50, node.getX() - node.getY()+50));
+        int sweepAngle = (int) (180 / Math.PI * Math.atan2(node.getY() - node.getX(), node.getX() - node.getY()));
+        myPath.arcTo(oval, startAngle, -(float) sweepAngle, true);*/
     }
 
     public void unDrawNode(Node node)  {
@@ -97,6 +74,7 @@ public class DrawableGraph extends View implements View.OnTouchListener {
 
 
 
+/*
     public void drawArc(int ax,int ay, int bx,int by){
 
         Paint p = new Paint();
@@ -109,11 +87,11 @@ public class DrawableGraph extends View implements View.OnTouchListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             canvas.drawArc(ax,ay,bx,by, 90, 45, true, p);
         }
-        this.invalidate();
-
     }
+*/
 
     @Override
+/*
     public boolean onTouch(View view, MotionEvent event) {
 
 
@@ -127,9 +105,11 @@ public class DrawableGraph extends View implements View.OnTouchListener {
                 Node auxNode = graph.selectedNode(downx, downy);
                 if (null != auxNode) {
 
-                         /*  unDrawNode(auxNode);
+                         */
+/*  unDrawNode(auxNode);
                             graph.removeNode(auxNode);
-                            initialize();*/
+                            initialize();*//*
+
                     supOne = true;
                 }
 
@@ -139,10 +119,11 @@ public class DrawableGraph extends View implements View.OnTouchListener {
                 umpx = (int) event.getX();
                 umpy = (int) event.getY();
                 if (supOne){
-                    drawArc(downx,downy,umpx,umpy);
+                    //drawArc(downx,downy,umpx,umpy);
                     Log.e("XXXX", " ===> draw arc =  " );
                 }
-                        /* umpx = (int) event.getX();
+                        */
+/* umpx = (int) event.getX();
                         umpy = (int) event.getY();
 
                         Node auxNode = graph.selectedNode(downx, downy);
@@ -151,7 +132,8 @@ public class DrawableGraph extends View implements View.OnTouchListener {
                         auxNode.setX(umpx);
                         auxNode.setY(umpy);
                         drawNode(auxNode);
-                        zzst.invalidate();*/
+                        zzst.invalidate();*//*
+
 
 
                 break;
@@ -173,5 +155,35 @@ public class DrawableGraph extends View implements View.OnTouchListener {
         }
         return true;
     }
+*/
 
+
+
+    public void draw(@NonNull Canvas canvas) {
+        int ic = 0;
+        for (Node node : graph.getNoeuds()) {
+            drawNode(node);
+            ic++;
+        }
+        if (ic == 0) {
+            canvas.drawCircle(0, 0, 1500, painte);
+            Log.e("XXXX", " ===> Winter " + ic);
+        }
+        Log.e("XXXX", " ===> ic =  " + ic);
+    }
+
+    @Override
+    public void setAlpha(@IntRange(from = 0, to = 255) int i) {
+
+    }
+
+    @Override
+    public void setColorFilter(@Nullable ColorFilter colorFilter) {
+
+    }
+
+    @Override
+    public int getOpacity() {
+        return PixelFormat.UNKNOWN;
+    }
 }

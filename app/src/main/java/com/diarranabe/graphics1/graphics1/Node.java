@@ -204,7 +204,7 @@ public class Node {
 
     public static int getRandomCoord(int max) {
         Random rand = new Random();
-        int x = rand.nextInt(max) + 1;
-        return (x / DEFAULT_RADIUS) * DEFAULT_RADIUS;
+        int x = rand.nextInt(max) + 1-100;
+        return 100+(x / DEFAULT_RADIUS) * DEFAULT_RADIUS;
     }
 }
