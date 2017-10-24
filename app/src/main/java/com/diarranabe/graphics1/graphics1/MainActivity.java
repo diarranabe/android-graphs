@@ -13,7 +13,7 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
 
     DrawableGraph myDraw = new DrawableGraph();
-    ImageView supportView ;
+    ImageView supportView;
 
     Paint paint, painte, paintr;
     Canvas canvas = new Canvas();
@@ -50,81 +50,33 @@ public class MainActivity extends AppCompatActivity {
         supportView.setImageDrawable(myDraw);
 
 
-        supportView.invalidate();
+        //supportView.invalidate();
+
         supportView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
+               switch (event.getAction()){
+                   case MotionEvent.ACTION_DOWN:
 
-                        downx = (int) event.getX();
-                        downy = (int) event.getY();
-                        linePath.reset();
-                        Log.e("XXXX", " ===> Cool touch " );
-                        Node auxNode = graph.selectedNode(downx, downy);
-                        if (null != auxNode) {
+                       Log.d("XXXX" , " you touch down the screm") ;
+                       break;
+                   case MotionEvent.ACTION_UP:
+                       Log.e("XXXX" , " you touch up the screm") ;
+                       break;
+                   case MotionEvent.ACTION_MOVE:
+                       Log.e("XXXX" , " you touch mouve the screm") ;
+                       break;
+                   case MotionEvent.ACTION_CANCEL:
+                       Log.e("XXXX" , " you touch up the stop screm") ;
+                       break;
+               }
 
-                            Log.e("XXXX", " ===> Cool somthing touch " );
-                            linePath.moveTo(downx, downy);
-                         /*  unDrawNode(auxNode);
-                            graph.removeNode(auxNode);
-                            initialize();*/
-
-                            supOne = true;
-                        }
-
-
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        umpx = (int) event.getX();
-                        umpy = (int) event.getY();
-                        if (supOne){
-                            tempArc = true ;
-                            Log.e("XXXX", " ===> draw arc true " );
-                        }
-                        /* umpx = (int) event.getX();
-                        umpy = (int) event.getY();
-
-                        Node auxNode = graph.selectedNode(downx, downy);
-                        if (auxNode != null)
-                            unDrawNode(auxNode);
-                        auxNode.setX(umpx);
-                        auxNode.setY(umpy);
-                        drawNode(auxNode);
-                        zzst.invalidate();*/
-
-
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        upx = (int) event.getX();
-                        upy = (int) event.getY();
-                        Log.e("XXXX", " ===> Cool upp 1 " );
-                      //  if (!supOne) {
-                            tempArc =false ;
-                            if ((Math.abs(upx - downx) < 10) && (Math.abs(upy - downy) < 10)) {
-                                if (graph.addNode(upx, upy)) ;
-
-                                Log.e("XXXX", " ===> Cool upp 2 " );
-                                myDraw.initialize();
-                                supportView.invalidate();
-
-                         }
-                        /*   } else {
-                            supOne = false;
-                        }*/
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                        break;
-                    default:
-                        break;
-                }
-                return false ;
-            }});
-
+                return true;
+            }
+        });
 
     }
-
-
 }
+
+
 
