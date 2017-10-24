@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.os.Build;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -23,6 +24,9 @@ public class DrawableGraph extends View implements View.OnTouchListener {
     Canvas canvas;
 
     Boolean supOne = false;
+    Boolean tempArc = false;
+
+    Path linePath = new Path();
 
 
     int downx = 50;
@@ -45,17 +49,21 @@ public class DrawableGraph extends View implements View.OnTouchListener {
         super(context);
         this.setOnTouchListener(this);
 
+        paint = new Paint();
+        painte = new Paint();
+        paint.setColor(Color.DKGRAY);
+        painte.setColor(Color.WHITE);
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.canvas =  canvas ;
+        if (tempArc){
 
-        paint = new Paint();
-        painte = new Paint();
-        paint.setColor(Color.DKGRAY);
-        painte.setColor(Color.WHITE);
+        }
+
 
     }
 
@@ -72,7 +80,7 @@ public class DrawableGraph extends View implements View.OnTouchListener {
             Log.e("XXXX", " ===> Winter " + ic);
         }
         Log.e("XXXX", " ===> ic =  " + ic);
-
+        this.invalidate();
 
     }
 
@@ -130,10 +138,10 @@ public class DrawableGraph extends View implements View.OnTouchListener {
             case MotionEvent.ACTION_MOVE:
                 umpx = (int) event.getX();
                 umpy = (int) event.getY();
-               /* if (supOne){
+                if (supOne){
                     drawArc(downx,downy,umpx,umpy);
                     Log.e("XXXX", " ===> draw arc =  " );
-                }*/
+                }
                         /* umpx = (int) event.getX();
                         umpy = (int) event.getY();
 
