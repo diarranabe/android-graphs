@@ -83,7 +83,7 @@ public class  Graph {
             int  x = Node.getRandomCoord(MAX_X);
             int  y = Node.getRandomCoord(MAX_Y);
             Node node = new Node(x,y);
-            node = new Node(x,y);
+            node = new Node(y,x);
             boolean add = addNode(node);
             while (!add ){
                 x = Node.getRandomCoord(MAX_X);

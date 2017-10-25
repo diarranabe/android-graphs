@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     int umpy = 0;
 
     static {
-        graph = new Graph(10);
+        graph = new Graph(2);
 
     }
 
@@ -67,13 +67,19 @@ public class MainActivity extends AppCompatActivity {
                        Log.d("XXXX" , " you touch down the screm on = " + downx + " - y = " + downy) ;
                        break;
                    case MotionEvent.ACTION_UP:
-                       umpx =(int) event.getX();
-                       umpy =(int) event.getY();
+                        upx =(int) event.getX();
+                        upy =(int) event.getY();
                        Log.d("XXXX" , " you touch up the screm") ;
+
+                       if( (Math.abs(upx - downx)< 10) ||  (Math.abs(upy - downy)< 10)) {
+                            if (graph.addNode(upx,upy));
+                           supportView.invalidate();
+                       }
+
                        break;
                    case MotionEvent.ACTION_MOVE:
-                       int upx = (int) event.getX();;
-                       int upy = (int) event.getY();;
+                       int umpx = (int) event.getX();;
+                       int umpy = (int) event.getY();;
                        Log.i("XXXX" , " you touch mouve the screm") ;
                        break;
                    case MotionEvent.ACTION_CANCEL:

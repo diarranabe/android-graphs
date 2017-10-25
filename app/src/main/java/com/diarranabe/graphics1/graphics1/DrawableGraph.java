@@ -84,7 +84,7 @@ public class DrawableGraph extends Drawable {
 
     public void drawNode(Node node) {
         Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getDiameter());
-        canvas.drawCircle(node.getY() ,node.getX() , node.getDiameter() + 3, paint);
+        canvas.drawCircle(node.getX(),node.getY()  , node.getDiameter() + 3, paint);
 
     }
 

@@ -156,11 +156,11 @@ public class Node {
     public boolean overlap(Node n) {
         int sy = Math.abs(y - n.getY());
         int sx = Math.abs(x - n.getX());
-        if ((sx < this.diameter+10) && (sy < this.diameter+10)) {
+        if ((sx < this.diameter+50) && (sy < this.diameter+50)) {
             Log.e("XXXX", " ===> surperpos dx= " + sx + " dy= "+ sy);
         }
 
-        return ((sx < this.diameter+10) && (sy < this.diameter+10));
+        return ((sx < this.diameter+50) && (sy < this.diameter+50));
 
     }
 
