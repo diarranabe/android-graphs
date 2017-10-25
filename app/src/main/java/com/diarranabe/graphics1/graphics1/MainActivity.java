@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    DrawableGraph myDraw = new DrawableGraph();
+    DrawableGraph myDraw ;
     ImageView supportView;
 
     Paint paint, painte, paintr;
@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Path linePath = new Path();
 
 
-    int downx = 50;
-    int downy = 50;
+    int downx = 0;
+    int downy = 0;
 
     int upx = 0;
     int upy = 0;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     int umpy = 0;
 
     static {
-        graph = new Graph(5);
+        graph = new Graph(10);
 
     }
 
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        myDraw = new DrawableGraph(graph);
         setContentView(R.layout.activity_main);
         supportView = (ImageView) findViewById(R.id.imageView);
 
@@ -57,17 +58,26 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent event) {
                switch (event.getAction()){
                    case MotionEvent.ACTION_DOWN:
-
-                       Log.d("XXXX" , " you touch down the screm") ;
+                       downx = (int) event.getX();
+                       downy = (int) event.getY();
+                       Node auxNode = graph.selectedNode(downy, downx);
+                       if (auxNode != null){
+                           Log.e("XXXX" , " you touch down a node on the screm on position = " + downx + " node.x "+ auxNode.getX()  + " y=>" +  downy + " mode.y " + auxNode.getY() ) ;
+                       }
+                       Log.d("XXXX" , " you touch down the screm on = " + downx + " - y = " + downy) ;
                        break;
                    case MotionEvent.ACTION_UP:
-                       Log.e("XXXX" , " you touch up the screm") ;
+                       umpx =(int) event.getX();
+                       umpy =(int) event.getY();
+                       Log.d("XXXX" , " you touch up the screm") ;
                        break;
                    case MotionEvent.ACTION_MOVE:
-                       Log.e("XXXX" , " you touch mouve the screm") ;
+                       int upx = (int) event.getX();;
+                       int upy = (int) event.getY();;
+                       Log.i("XXXX" , " you touch mouve the screm") ;
                        break;
                    case MotionEvent.ACTION_CANCEL:
-                       Log.e("XXXX" , " you touch up the stop screm") ;
+                       Log.d("XXXX" , " you touch up the stop screm") ;
                        break;
                }
 

@@ -43,14 +43,11 @@ public class DrawableGraph extends Drawable {
     int umpx = 0;
     int umpy = 0;
 
-    static {
-        graph = new Graph(5);
+    Graph graph ;
 
-    }
 
-    private static Graph graph;
-
-    public DrawableGraph() {
+    public DrawableGraph(Graph graph) {
+        this.graph = graph;
         paint = new Paint();
         painte = new Paint();
         paint.setColor(Color.DKGRAY);
@@ -86,8 +83,8 @@ public class DrawableGraph extends Drawable {
 
 
     public void drawNode(Node node) {
-        Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete());
-        canvas.drawCircle(node.getX(), node.getY(), node.getDiameter() + 3, paint);
+        Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getDiameter());
+        canvas.drawCircle(node.getY() ,node.getX() , node.getDiameter() + 3, paint);
 
     }
 

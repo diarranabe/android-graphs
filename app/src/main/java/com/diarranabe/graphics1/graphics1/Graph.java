@@ -54,13 +54,27 @@ import java.util.Random;
 
 public class  Graph {
 
-    public static int MAX_X = 700;
-    public static int MAX_Y = 1000;
+    public  int MAX_X = 700;
+    public  int MAX_Y = 1000;
     private List<Node> nodes = new ArrayList<Node>();
     private List<Arc> arcs = new ArrayList<Arc>();
 
-    public Graph() {
-
+    public Graph(int n, int screnH , int screnW ) {
+        MAX_X = screnH ;
+        MAX_Y = screnW ;
+        Random rand = new Random();
+        for (int i=0; i<n; i++){
+            int  x = Node.getRandomCoord(MAX_X);
+            int  y = Node.getRandomCoord(MAX_Y);
+            Node node = new Node(x,y);
+            node = new Node(x,y);
+            boolean add = addNode(node);
+            while (!add ){
+                x = Node.getRandomCoord(MAX_X);
+                y = Node.getRandomCoord(MAX_Y);
+                node = new Node(x,y);
+            }
+        }
     }
 
     public Graph(int n) {
