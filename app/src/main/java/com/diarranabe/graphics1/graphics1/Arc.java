@@ -1,5 +1,7 @@
 package com.diarranabe.graphics1.graphics1;
 
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
@@ -12,6 +14,11 @@ import java.util.Collection;
 public class Arc {
     private Node debut;
     private Node fin;
+    private Color color;
+    private Point midPoint;
+    private Point tangent;
+
+
     public Arc(Node debut, Node fin) {
         this.debut = debut;
         this.fin = fin;
@@ -36,6 +43,38 @@ public class Arc {
      */
     public void setDebut(Node nwNode){
         debut = nwNode;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Point getMidPoint() {
+        return midPoint;
+    }
+
+    public void setMidPoint(Point midPoint) {
+        this.midPoint = midPoint;
+    }
+
+    public void setMidPoint(int x, int y) {
+        this.midPoint = new Point(x,y);
+    }
+
+    public Point getTangent() {
+        return tangent;
+    }
+
+    public void setTangent(Point tangent) {
+        this.tangent = tangent;
+    }
+
+    public void setTangent(int x, int y) {
+        this.tangent = new Point(x,y);
     }
 
     /**
