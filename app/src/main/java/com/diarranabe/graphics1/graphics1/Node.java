@@ -1,8 +1,6 @@
 package com.diarranabe.graphics1.graphics1;
 
 import android.graphics.Color;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import java.util.Collection;
@@ -18,7 +16,7 @@ public class Node {
     private int y;
     private String etiquete;
     private int color;
-    private int diameter;
+    private int width;
 
     public static int DEFAULT_COLOR = Color.BLUE;
     public static int DEFAULT_RADIUS = 45;
@@ -90,8 +88,8 @@ public class Node {
         this.color = color;
     }
 
-    public int getDiameter() {
-        return diameter;
+    public int getWidth() {
+        return width;
     }
 
     /**
@@ -100,10 +98,10 @@ public class Node {
     public void setRadiaus() {
         switch (etiquete) {
             case "":
-                this.diameter = DEFAULT_RADIUS;
+                this.width = DEFAULT_RADIUS;
                 break;
             default:
-                this.diameter = etiquete.length() * CHAR_LENGTH;
+                this.width = etiquete.length() * CHAR_LENGTH;
         }
     }
 
@@ -156,11 +154,11 @@ public class Node {
     public boolean overlap(Node n) {
         int sy = Math.abs(y - n.getY());
         int sx = Math.abs(x - n.getX());
-        if ((sx < this.diameter+50) && (sy < this.diameter+50)) {
+        if ((sx < this.width +50) && (sy < this.width +50)) {
             Log.e("XXXX", " ===> surperpos dx= " + sx + " dy= "+ sy);
         }
 
-        return ((sx < this.diameter+50) && (sy < this.diameter+50));
+        return ((sx < this.width +50) && (sy < this.width +50));
 
     }
 
@@ -183,7 +181,7 @@ public class Node {
      * @return true ou false
      */
     public boolean isClose(int x, int y) {
-        return (Math.abs(this.x - x) < diameter) || (Math.abs(this.y - y) < diameter);
+        return (Math.abs(this.x - x) < width) || (Math.abs(this.y - y) < width);
     }
 
     public String toString() {

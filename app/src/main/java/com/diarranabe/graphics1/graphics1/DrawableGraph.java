@@ -1,23 +1,16 @@
 package com.diarranabe.graphics1.graphics1;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 /**
  * Created by matok on 24/10/2017.
@@ -83,13 +76,13 @@ public class DrawableGraph extends Drawable {
 
 
     public void drawNode(Node node) {
-        Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getDiameter());
-        canvas.drawCircle(node.getX(),node.getY()  , node.getDiameter() + 3, paint);
+        Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getWidth());
+        canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, paint);
 
     }
 
     public void unDrawNode(Node node)  {
-        canvas.drawCircle(node.getX(), node.getY(), node.getDiameter() + 3, painte);
+        canvas.drawCircle(node.getX(), node.getY(), node.getWidth() + 3, painte);
     }
 
 
