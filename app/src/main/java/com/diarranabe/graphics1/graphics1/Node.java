@@ -152,14 +152,9 @@ public class Node {
      * @return true si oui
      */
     public boolean overlap(Node n) {
-        int sy = Math.abs(y - n.getY());
-        int sx = Math.abs(x - n.getX());
-        if ((sx < this.width +50) && (sy < this.width +50)) {
-            Log.e("XXXX", " ===> surperpos dx= " + sx + " dy= "+ sy);
-        }
-
-        return ((sx < this.width +50) && (sy < this.width +50));
-
+        int margY = Math.abs(y - n.getY());
+        int margX = Math.abs(x - n.getX());
+        return  (margX< (this.getWidth()) + (n.getWidth())) && (margY< (this.getWidth()) + (n.getWidth()));
     }
 
     /**
@@ -170,7 +165,7 @@ public class Node {
      * @return true si oui
      */
     public static boolean overlap(Node n1, Node n2) {
-        return n1.overlap(n2) && n2.overlap(n1);
+        return n1.overlap(n2);
     }
 
     /**
