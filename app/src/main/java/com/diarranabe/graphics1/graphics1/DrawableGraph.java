@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.IntRange;
@@ -41,12 +42,15 @@ public class DrawableGraph extends Drawable {
 
     public DrawableGraph(Graph graph) {
         this.graph = graph;
+
+        graph.addRandomArcs();
+
         paint = new Paint();
         painte = new Paint();
         paint.setColor(Color.DKGRAY);
         paintr = new Paint();
         paintr.setColor(Color.RED);
-        painte.setColor(Color.WHITE);
+        painte.setColor(Color.RED);
       //  this.draw(this.canvas);
         initialize();
 
@@ -123,7 +127,43 @@ public class DrawableGraph extends Drawable {
             // linePath.reset();
         }
 
+//        Arc a = graph.getArcs().get(0);
+        drawArcs();
+
     }
+
+
+    public void drawArcs( ){
+        Log.e("XXXX", " ===> ic = ARCS START ");
+        for (Arc arcs : graph.getArcs()) {
+            drawArc(arcs);
+        }
+    }
+
+    public void drawArc(Arc arc){
+
+        int x1 = arc.getDebut().getX();
+        int x2 = arc.getFin().getX();
+        int y1 = arc.getDebut().getY();
+        int y2 = arc.getFin().getY();
+
+        int mx =10+ (x1+x2)/2;
+        int my =10+ (y1+y2)/2;
+
+        Path edgePath = new Path();
+
+        float[] midPoint = {0f, 0f};
+        float[] tangent = {0f, 0f};
+        PathMeasure pm = new PathMeasure(edgePath, false);
+        pm.getPosTan(pm.getLength() * 0.50f, midPoint, tangent);
+
+
+        edgePath.moveTo(x1, y1);
+        edgePath.quadTo(mx, my, x2, y2);
+        canvas.drawPath(edgePath, painte);
+    }
+
+
 
     @Override
     public void setAlpha(@IntRange(from = 0, to = 255) int i) {
