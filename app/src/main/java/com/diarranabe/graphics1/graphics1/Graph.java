@@ -138,8 +138,7 @@ public class  Graph {
         while(i.hasNext()){
             Node n = (Node)i.next();
             if(Node.overlap(n,node)){
-
-                Log.i("XXXX", "Voici ton objey");
+                Log.i("XXXX", "Selected node : "+n);
                 return n;
 
             }

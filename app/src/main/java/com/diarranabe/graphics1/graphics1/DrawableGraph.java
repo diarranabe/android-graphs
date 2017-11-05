@@ -75,7 +75,6 @@ public class DrawableGraph extends Drawable {
         }
         Log.e("XXXX", " ===> ic =  " + ic);
 
-
     }
 
 
@@ -147,19 +146,21 @@ public class DrawableGraph extends Drawable {
         int y1 = arc.getDebut().getY();
         int y2 = arc.getFin().getY();
 
-        int mx =10+ (x1+x2)/2;
-        int my =10+ (y1+y2)/2;
-
-        Path edgePath = new Path();
+        int mx =20+ (x1+x2)/2;
+        int my =20+ (y1+y2)/2;
 
         float[] midPoint = {0f, 0f};
         float[] tangent = {0f, 0f};
+
+        Path edgePath = new Path();
+        edgePath.moveTo(x1, y1);
+
         PathMeasure pm = new PathMeasure(edgePath, false);
         pm.getPosTan(pm.getLength() * 0.50f, midPoint, tangent);
 
-
-        edgePath.moveTo(x1, y1);
         edgePath.quadTo(mx, my, x2, y2);
+
+
         canvas.drawPath(edgePath, painte);
     }
 
