@@ -3,6 +3,7 @@ package com.diarranabe.graphics1.graphics1;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -19,7 +20,7 @@ import android.util.Log;
 
 public class DrawableGraph extends Drawable {
 
-    Paint paint, painte, paintr;
+    Paint paint, painte, paintr, paintEtiq;
     Canvas canvas = new Canvas();
 
     Boolean supOne = false;
@@ -47,10 +48,12 @@ public class DrawableGraph extends Drawable {
 
         paint = new Paint();
         painte = new Paint();
+        paintEtiq = new Paint();
         paint.setColor(Color.DKGRAY);
         paintr = new Paint();
         paintr.setColor(Color.RED);
         painte.setColor(Color.RED);
+        paintEtiq.setColor(Color.WHITE);
       //  this.draw(this.canvas);
         initialize();
 
@@ -82,6 +85,13 @@ public class DrawableGraph extends Drawable {
         Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getWidth());
         canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, paint);
 
+        //Afficher l'étiquette
+        String text = "node";
+        node.setEtiquete(text);
+        int xPos = node.getX() - (int)(paintEtiq.measureText(text)/2);
+        int yPos = (int) (node.getY() - ((paintEtiq.descent() + paintEtiq.ascent()) / 2)) ;
+        paintEtiq.setTextSize(30);
+        canvas.drawText(node.getEtiquete(), xPos, yPos, paintEtiq);
     }
 
     public void unDrawNode(Node node)  {
@@ -109,6 +119,9 @@ public class DrawableGraph extends Drawable {
     @Override
     public void draw(@NonNull Canvas canvas) {
         this.canvas =  canvas ;
+
+        drawArcs();
+
         int ic = 0;
         for (Node node : graph.getNoeuds()) {
             drawNode(node);
@@ -123,12 +136,7 @@ public class DrawableGraph extends Drawable {
         if (tempArc){
             linePath.lineTo(umpx,umpy);
             this.canvas.drawPath(linePath,paintr);
-            // linePath.reset();
         }
-
-//        Arc a = graph.getArcs().get(0);
-        drawArcs();
-
     }
 
 
