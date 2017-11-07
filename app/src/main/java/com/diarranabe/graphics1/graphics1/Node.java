@@ -21,7 +21,7 @@ public class Node {
     public static int DEFAULT_COLOR = Color.BLUE;
     public static int DEFAULT_RADIUS = 45;
     public static int CHAR_LENGTH = 12;
-    public static String DEFAULT_ETIQ = "";
+    public static String DEFAULT_ETIQ = "node";
 
     public Node(int x, int y) {
         this.x = x;
@@ -51,7 +51,7 @@ public class Node {
         this.x = x;
         this.y = y;
         this.etiquete = etiquete;
-        this.color = Color.BLACK;
+        this.color = color;
         setRadiaus();
     }
 
@@ -98,6 +98,9 @@ public class Node {
     public void setRadiaus() {
         switch (etiquete) {
             case "":
+                this.width = DEFAULT_RADIUS;
+                break;
+            case "node":
                 this.width = DEFAULT_RADIUS;
                 break;
             default:

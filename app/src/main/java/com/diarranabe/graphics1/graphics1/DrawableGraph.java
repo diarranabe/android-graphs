@@ -23,8 +23,6 @@ public class DrawableGraph extends Drawable {
     Paint paint, painte, paintr, paintEtiq;
     Canvas canvas = new Canvas();
 
-    Boolean supOne = false;
-    Boolean tempArc = false;
 
     Path linePath = new Path();
 
@@ -39,7 +37,19 @@ public class DrawableGraph extends Drawable {
     int umpy = 0;
 
     Graph graph ;
+    private Arc tempArc = null; // arc temporaire pour suivre les mouvements
 
+    public Arc getTempArc() {
+        return tempArc;
+    }
+
+    public void setTempArc(Arc tempArc) {
+        this.tempArc = tempArc;
+    }
+
+    public void setTempArcNull(){
+        this.tempArc = null;
+    }
 
     public DrawableGraph(Graph graph) {
         this.graph = graph;
@@ -54,7 +64,8 @@ public class DrawableGraph extends Drawable {
         paintr.setColor(Color.RED);
         painte.setColor(Color.RED);
         paintEtiq.setColor(Color.WHITE);
-      //  this.draw(this.canvas);
+        paintEtiq.setTextSize(30);
+        //  this.draw(this.canvas);
         initialize();
 
 
@@ -86,11 +97,8 @@ public class DrawableGraph extends Drawable {
         canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, paint);
 
         //Afficher l'étiquette
-        String text = "node";
-        node.setEtiquete(text);
-        int xPos = node.getX() - (int)(paintEtiq.measureText(text)/2);
+        int xPos = node.getX() - (int)(paintEtiq.measureText(node.getEtiquete())/2);
         int yPos = (int) (node.getY() - ((paintEtiq.descent() + paintEtiq.ascent()) / 2)) ;
-        paintEtiq.setTextSize(30);
         canvas.drawText(node.getEtiquete(), xPos, yPos, paintEtiq);
     }
 
@@ -122,6 +130,10 @@ public class DrawableGraph extends Drawable {
 
         drawArcs();
 
+        drawNodes();
+    }
+
+    private void drawNodes() {
         int ic = 0;
         for (Node node : graph.getNoeuds()) {
             drawNode(node);
@@ -132,11 +144,6 @@ public class DrawableGraph extends Drawable {
             Log.e("XXXX", " ===> Winter " + ic);
         }
         Log.e("XXXX", " ===> ic =  " + ic);
-
-        if (tempArc){
-            linePath.lineTo(umpx,umpy);
-            this.canvas.drawPath(linePath,paintr);
-        }
     }
 
 
@@ -144,6 +151,9 @@ public class DrawableGraph extends Drawable {
         Log.e("XXXX", " ===> ic = ARCS START ");
         for (Arc arcs : graph.getArcs()) {
             drawArc(arcs);
+        }
+        if (this.tempArc != null){
+            drawArc(tempArc);
         }
     }
 
@@ -167,7 +177,6 @@ public class DrawableGraph extends Drawable {
         pm.getPosTan(pm.getLength() * 0.50f, midPoint, tangent);
 
         edgePath.quadTo(mx, my, x2, y2);
-
 
         canvas.drawPath(edgePath, painte);
     }

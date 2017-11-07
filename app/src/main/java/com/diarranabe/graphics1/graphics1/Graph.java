@@ -156,7 +156,6 @@ public class  Graph {
     public boolean addNode(int x, int y) {
         Node node = new Node(x,y);
         boolean overlap = false;
-
         Iterator<Node> i=nodes.iterator();
         baka:while(i.hasNext()){
             Node n =  i.next();
