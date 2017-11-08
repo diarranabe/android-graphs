@@ -194,7 +194,6 @@ public class  Graph {
      * Supprime le Node à la position nodeIndex du graphe en suppriment aussi tous les arcs qui lui sont reliés
      * @param nodeIndex
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void removeNode(int nodeIndex){
         if (nodeIndex<nodes.size()){
             Node node = nodes.get(nodeIndex);
@@ -252,7 +251,6 @@ public class  Graph {
      * @param y
      * @return true si possible
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean canDrawNode(int x, int y){
         for(Node node: nodes){
             if(node.isClose(x,y)){

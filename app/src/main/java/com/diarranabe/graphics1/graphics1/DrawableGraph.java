@@ -3,7 +3,6 @@ package com.diarranabe.graphics1.graphics1;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -14,15 +13,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by matok on 24/10/2017.
  */
 
 public class DrawableGraph extends Drawable {
 
-    Paint paint, painte, paintr, paintEtiq;
+    Paint nodePaint, painte, paintr, etiqPaint;
     Canvas canvas = new Canvas();
-
+    List<Integer> nodeColors = new ArrayList<>();
 
     Path linePath = new Path();
 
@@ -56,16 +58,16 @@ public class DrawableGraph extends Drawable {
 
         graph.addRandomArcs();
 
-        paint = new Paint();
+        nodePaint = new Paint();
         painte = new Paint();
-        paintEtiq = new Paint();
-        paint.setColor(Color.DKGRAY);
+        etiqPaint = new Paint();
+        nodePaint.setColor(Color.DKGRAY);
         paintr = new Paint();
         paintr.setColor(Color.RED);
         painte.setColor(Color.RED);
-        paintEtiq.setColor(Color.WHITE);
-        paintEtiq.setTextSize(30);
-        //  this.draw(this.canvas);
+        etiqPaint.setColor(Color.WHITE);
+        etiqPaint.setTextSize(30);
+        initNodeColors();
         initialize();
 
 
@@ -93,13 +95,14 @@ public class DrawableGraph extends Drawable {
 
 
     public void drawNode(Node node) {
-        Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getWidth());
-        canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, paint);
+        //Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getWidth());
+        nodePaint.setColor(node.getColor());
+        canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, nodePaint);
 
         //Afficher l'étiquette
-        int xPos = node.getX() - (int)(paintEtiq.measureText(node.getEtiquete())/2);
-        int yPos = (int) (node.getY() - ((paintEtiq.descent() + paintEtiq.ascent()) / 2)) ;
-        canvas.drawText(node.getEtiquete(), xPos, yPos, paintEtiq);
+        int xPos = node.getX() - (int)(etiqPaint.measureText(node.getEtiquete())/2);
+        int yPos = (int) (node.getY() - ((etiqPaint.descent() + etiqPaint.ascent()) / 2)) ;
+        canvas.drawText(node.getEtiquete(), xPos, yPos, etiqPaint);
     }
 
     public void unDrawNode(Node node)  {
@@ -180,8 +183,22 @@ public class DrawableGraph extends Drawable {
 
         canvas.drawPath(edgePath, painte);
     }
+    
+    public void initNodeColors(){
+        nodeColors.add(Color.BLUE);
+        nodeColors.add(Color.CYAN);
+        nodeColors.add(Color.DKGRAY);
+        nodeColors.add(Color.RED);
+        nodeColors.add(Color.GRAY);
+        nodeColors.add(Color.GREEN);
+        nodeColors.add(Color.MAGENTA);
+        nodeColors.add(Color.LTGRAY);
+        nodeColors.add(Color.YELLOW);
+    }
 
-
+    public List<Integer> getNodeColors() {
+        return nodeColors;
+    }
 
     @Override
     public void setAlpha(@IntRange(from = 0, to = 255) int i) {
