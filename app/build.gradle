@@ -29,6 +29,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:25.3.1'
     compile 'com.github.savvisingh:ColorPickerDialog:07a82afc4c'
+    compile 'com.github.Meetic:MaryPopup:b93a2e383e'
+
 }
 
 repositories {

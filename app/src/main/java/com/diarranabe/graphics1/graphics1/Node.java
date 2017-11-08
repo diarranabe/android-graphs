@@ -1,7 +1,6 @@
 package com.diarranabe.graphics1.graphics1;
 
 import android.graphics.Color;
-import android.util.Log;
 
 import java.util.Collection;
 import java.util.Random;
@@ -109,7 +108,7 @@ public class Node {
     }
 
     /**
-     * Remplace les coodonnées d'un Node
+     * Met les coodonnées d'un Node à jour
      *
      * @param x
      * @param y
@@ -149,7 +148,7 @@ public class Node {
     }
 
     /**
-     * Vérifie si un Node chevauche un autre
+     * Vérifie si un Node est trop proche du node courant
      *
      * @param n
      * @return true si oui
@@ -161,7 +160,7 @@ public class Node {
     }
 
     /**
-     * Vérifie si deux Nodes se chevauchent
+     * Vérifie si deux Nodes sont trop proches
      *
      * @param n1
      * @param n2
@@ -179,15 +178,30 @@ public class Node {
      * @return true ou false
      */
     public boolean isClose(int x, int y) {
-        return (Math.abs(this.x - x) < width) || (Math.abs(this.y - y) < width);
-    }
-
-    public String toString() {
-        return "{(" + x + "," + y + ")," + etiquete + ",color:" + color + "}";
+        return this.overlap(new Node(x,y));
     }
 
     /**
-     * Affiche les d'une collection
+     *
+     * @param max
+     * @return une coordonnée comprise entre 100 et max-100 de manière aléatoire
+     */
+    public static int getRandomCoord(int max) {
+        Random rand = new Random();
+        int x = rand.nextInt(max) + 1-100;
+        return 100+(x / DEFAULT_RADIUS) * DEFAULT_RADIUS;
+    }
+
+    /**
+     *
+     * @return Les informations d'un node en String
+     */
+    public String toString() {
+        return "{(" + x + "," + y + ")," + etiquete + ", color:" + color + "}";
+    }
+
+    /**
+     * Affiche une collection de nodes
      *
      * @param nodes
      */
@@ -195,12 +209,6 @@ public class Node {
         for (Node node : nodes) {
             System.out.println(node);
         }
-        System.out.println(nodes.size() + " items -----------------");
-    }
-
-    public static int getRandomCoord(int max) {
-        Random rand = new Random();
-        int x = rand.nextInt(max) + 1-100;
-        return 100+(x / DEFAULT_RADIUS) * DEFAULT_RADIUS;
+        System.out.println(nodes.size() + " nodes -----------------");
     }
 }

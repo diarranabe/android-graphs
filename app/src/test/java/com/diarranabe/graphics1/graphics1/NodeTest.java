@@ -14,21 +14,21 @@ import static org.junit.Assert.assertNotEquals;
 
 public class NodeTest {
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void getX() throws Exception {
         Node node = new Node(15,12);
         assertEquals(node.getX(),15);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void getY() throws Exception {
         Node node = new Node(15,12);
         assertEquals(node.getY(),12);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void update1() throws Exception {
         Node node = new Node(15,12);
@@ -36,7 +36,7 @@ public class NodeTest {
         assertEquals(node.getX(),122);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void overlap1() throws Exception {
         Node n2 = new Node(15,12);
@@ -44,7 +44,7 @@ public class NodeTest {
         assertNotEquals(n1.overlap(n2),true);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void overlap2() throws Exception {
         Node n2 = new Node(15,12);
@@ -52,7 +52,7 @@ public class NodeTest {
         assertEquals(n1.overlap(n2),true);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void overlap3() throws Exception {
         Node n2 = new Node(15,12);
@@ -60,7 +60,7 @@ public class NodeTest {
         assertNotEquals(n1.overlap(n2),true);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void overlap4() throws Exception {
         Node n2 = new Node(15,12);
@@ -68,7 +68,7 @@ public class NodeTest {
         assertNotEquals(Node.overlap(n1,n2),true);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void overlap5() throws Exception {
         Node n2 = new Node(15,12);
@@ -77,7 +77,7 @@ public class NodeTest {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    
     @Test
     public void isClose() throws Exception {
         Node n2 = new Node(175,12);

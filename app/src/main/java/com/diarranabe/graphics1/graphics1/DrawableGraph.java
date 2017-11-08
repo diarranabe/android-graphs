@@ -15,6 +15,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by matok on 24/10/2017.
@@ -22,12 +23,10 @@ import java.util.List;
 
 public class DrawableGraph extends Drawable {
 
-    Paint nodePaint, painte, paintr, etiqPaint;
-    Canvas canvas = new Canvas();
-    List<Integer> nodeColors = new ArrayList<>();
+    private Paint nodePaint, painte, paintr, etiqPaint;
+    private Canvas canvas = new Canvas();
 
-    Path linePath = new Path();
-
+    private Path linePath = new Path();
 
     int downx = 50;
     int downy = 50;
@@ -67,13 +66,11 @@ public class DrawableGraph extends Drawable {
         painte.setColor(Color.RED);
         etiqPaint.setColor(Color.WHITE);
         etiqPaint.setTextSize(30);
-        initNodeColors();
+
         initialize();
 
 
     }
-
-
 
     public void initialize() {
 
@@ -93,9 +90,9 @@ public class DrawableGraph extends Drawable {
 
     }
 
-
     public void drawNode(Node node) {
         //Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getWidth());
+
         nodePaint.setColor(node.getColor());
         canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, nodePaint);
 
@@ -107,24 +104,6 @@ public class DrawableGraph extends Drawable {
 
     public void unDrawNode(Node node)  {
         canvas.drawCircle(node.getX(), node.getY(), node.getWidth() + 3, painte);
-    }
-
-
-
-    public void drawArc(int ax,int ay, int bx,int by){
-
-        Paint p = new Paint();
-        // smooths
-        p.setAntiAlias(true);
-        p.setColor(Color.RED);
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeWidth(5);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            canvas.drawArc(ax,ay,bx,by, 90, 45, true, p);
-        }
-
-
     }
 
     @Override
@@ -148,7 +127,6 @@ public class DrawableGraph extends Drawable {
         }
         Log.e("XXXX", " ===> ic =  " + ic);
     }
-
 
     public void drawArcs( ){
         Log.e("XXXX", " ===> ic = ARCS START ");
@@ -180,24 +158,8 @@ public class DrawableGraph extends Drawable {
         pm.getPosTan(pm.getLength() * 0.50f, midPoint, tangent);
 
         edgePath.quadTo(mx, my, x2, y2);
-
+        painte.setColor(arc.getDebut().getColor());
         canvas.drawPath(edgePath, painte);
-    }
-    
-    public void initNodeColors(){
-        nodeColors.add(Color.BLUE);
-        nodeColors.add(Color.CYAN);
-        nodeColors.add(Color.DKGRAY);
-        nodeColors.add(Color.RED);
-        nodeColors.add(Color.GRAY);
-        nodeColors.add(Color.GREEN);
-        nodeColors.add(Color.MAGENTA);
-        nodeColors.add(Color.LTGRAY);
-        nodeColors.add(Color.YELLOW);
-    }
-
-    public List<Integer> getNodeColors() {
-        return nodeColors;
     }
 
     @Override
