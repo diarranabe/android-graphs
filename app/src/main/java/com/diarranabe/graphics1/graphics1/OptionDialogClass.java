@@ -24,6 +24,7 @@ public class OptionDialogClass extends Dialog {
     private Button no;
     private Button chooseColor;
     private Button deleteNode;
+    private Button defaultColorBtn;
     private EditText labelInput;
     private TextView nodeLabel;
 
@@ -44,6 +45,7 @@ public class OptionDialogClass extends Dialog {
         no = (Button) findViewById(R.id.dismiss);
         chooseColor = (Button) findViewById(R.id.choosecolorbtn);
         deleteNode = (Button) findViewById(R.id.deletebtn);
+        defaultColorBtn = (Button) findViewById(R.id.defaultcolorbtn);
         labelInput = (EditText) findViewById(R.id.node_label_input);
         nodeLabel = (TextView) findViewById(R.id.nodelabel);
 
@@ -73,6 +75,13 @@ public class OptionDialogClass extends Dialog {
             @Override
             public void onClick(View v) {
                 activity.showColorPopup();
+            }
+        });
+
+        defaultColorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.showDefaultColorPopup();
             }
         });
 

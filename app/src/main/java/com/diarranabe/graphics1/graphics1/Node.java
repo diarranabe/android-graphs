@@ -19,7 +19,7 @@ public class Node {
 
     public static int DEFAULT_COLOR = Color.BLUE;
     public static int DEFAULT_RADIUS = 45;
-    public static int CHAR_LENGTH = 12;
+    public static int CHAR_LENGTH = 6;
     public static String DEFAULT_ETIQ = "node";
 
     public Node(int x, int y) {
@@ -92,19 +92,18 @@ public class Node {
     }
 
     /**
-     * Met un rayon en fonction de l'etiquete
+     * Mettre le diamètre en fonction de l'etiquete
      */
     public void setRadiaus() {
-        if (this.etiquete.length()<3){
+        int length = this.etiquete.length();
+        if (length<4){
             this.width = DEFAULT_RADIUS;
+        }else if (length<=10){
+            this.width = DEFAULT_RADIUS+ length * length;
+        }else if (length<=25) {
+            this.width = DEFAULT_RADIUS+ length * length - length*(length/2) - length;
         }else {
-            switch (etiquete) {
-                case "node":
-                    this.width = DEFAULT_RADIUS;
-                    break;
-                default:
-                    this.width = etiquete.length() * CHAR_LENGTH;
-            }
+            this.width = DEFAULT_RADIUS+ length * length - length*(length/2) - length*10;
         }
 
     }
