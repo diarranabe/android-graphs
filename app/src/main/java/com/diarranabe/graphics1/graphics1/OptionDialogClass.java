@@ -25,6 +25,7 @@ public class OptionDialogClass extends Dialog {
     private Button chooseColor;
     private Button deleteNode;
     private Button defaultColorBtn;
+    private Button arcColorBtn;
     private EditText labelInput;
     private TextView nodeLabel;
 
@@ -46,6 +47,7 @@ public class OptionDialogClass extends Dialog {
         chooseColor = (Button) findViewById(R.id.choosecolorbtn);
         deleteNode = (Button) findViewById(R.id.deletebtn);
         defaultColorBtn = (Button) findViewById(R.id.defaultcolorbtn);
+        arcColorBtn = (Button) findViewById(R.id.arcsetting);
         labelInput = (EditText) findViewById(R.id.node_label_input);
         nodeLabel = (TextView) findViewById(R.id.nodelabel);
 
@@ -92,6 +94,15 @@ public class OptionDialogClass extends Dialog {
                 activity.optionPopupVisible = false;
                 activity.supportView.invalidate();
                 dismiss();
+            }
+        });
+
+
+        arcColorBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.showOptionsArc();
+
             }
         });
     }

@@ -101,8 +101,8 @@ public class Graph {
             Node node = new Node(x, y);
             node = new Node(y, x);
             node.setColor(getRandomColor());
-            int num = getNoeuds().size()+1;
-            node.setEtiquete(""+num);
+            int num = getNoeuds().size() + 1;
+            node.setEtiquete("" + num);
             boolean add = addNode(node);
             while (!add) {
                 x = Node.getRandomCoord(MAX_X);
@@ -144,7 +144,6 @@ public class Graph {
     }
 
     /**
-     *
      * @return La liste de toutes couleurs disponibles
      */
     public List<Integer> getNodeColors() {
@@ -152,7 +151,6 @@ public class Graph {
     }
 
     /**
-     *
      * @return Une couleur de manière aléatoire
      */
     public static int getRandomColor() {
@@ -245,9 +243,10 @@ public class Graph {
 
     /**
      * Supprimes tous les arcs dans lesquels un node est impliqué
+     *
      * @param node
      */
-    public void removeNodeArcs(Node node){
+    public void removeNodeArcs(Node node) {
         for (Arc arc : arcs) {
             if (arc.contains(node)) {
                 arcs.remove(arc);
@@ -274,6 +273,7 @@ public class Graph {
      * @param arc
      */
     public void addArc(Arc arc) {
+        if (!Node.overlap(arc.getDebut(), arc.getFin()) )
         this.arcs.add(arc);
     }
 
@@ -287,7 +287,9 @@ public class Graph {
         if (index1 != index2) {
             Node n1 = getNoeuds().get(index1);
             Node n2 = getNoeuds().get(index2);
-            this.arcs.add(new Arc(n1, n2));
+            if (!Node.overlap(n1, n2) ){
+                Log.d("XXXXAD", "add arc ") ;
+            this.arcs.add(new Arc(n1, n2));}
         }
 
     }
@@ -344,4 +346,27 @@ public class Graph {
             addRandomArcs();
         }
     }
+
+
+    /**
+     * Retourne tous les arcs dont le Node en parametre en le debut
+     *
+     * @param nodeBegin si nodeBegin n'est lie a aucun autre node on retourne une liste vide
+     */
+
+    public List<Arc> getArcOutOfMe(Node nodeBegin) {
+        List<Arc> arcOutOfMe = new ArrayList<Arc>();
+        int i = 0;
+        int e = 0;
+        for (Arc arc : arcs) {
+            if (arc.containsbegin(nodeBegin)){ arcOutOfMe.add(arc); e++ ;}
+            i++ ;
+        }
+        Log.e("XXXXY", "All sieze arc = " + i);
+        Log.e("XXXXY", "of me  sieze arc = " + e);
+
+        return arcOutOfMe;
+    }
+
+
 }

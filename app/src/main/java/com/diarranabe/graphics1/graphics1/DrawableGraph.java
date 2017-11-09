@@ -158,7 +158,7 @@ public class DrawableGraph extends Drawable {
         pm.getPosTan(pm.getLength() * 0.50f, midPoint, tangent);
 
         edgePath.quadTo(mx, my, x2, y2);
-        painte.setColor(arc.getDebut().getColor());
+        painte.setColor(arc.getColor());
         canvas.drawPath(edgePath, painte);
     }
 

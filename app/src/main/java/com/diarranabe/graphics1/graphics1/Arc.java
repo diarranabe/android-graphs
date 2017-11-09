@@ -14,12 +14,14 @@ import java.util.Collection;
 public class Arc {
     private Node debut;
     private Node fin;
-    private Color color;
+    private int color;
     private Point midPoint;
     private Point tangent;
 
 
+
     public Arc(Node debut, Node fin) {
+        this.color = debut.getColor() ;
         this.debut = debut;
         this.fin = fin;
     }
@@ -45,11 +47,11 @@ public class Arc {
         debut = nwNode;
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
@@ -86,6 +88,19 @@ public class Arc {
     public boolean contains(Node node){
         return node instanceof Node && (Node.overlap(debut, node) || Node.overlap(fin, node));
     }
+
+
+    /**
+     *
+     * @param node
+     * @return true si node est le node de debut de l'arc
+     */
+
+    public boolean containsbegin(Node node){
+        return node instanceof Node && (Node.overlap(debut, node) );
+    }
+
+
 
     /**
      *
