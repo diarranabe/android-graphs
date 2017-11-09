@@ -2,5 +2,5 @@
     <string name="app_name">Graphics1</string>
     <string name="label">Label</string>
     <string name="cancel">Cancel</string>
-    <string name="node_settings">Node settings</string>
+    <string name="node_settings">Selected node settings</string>
 </resources>

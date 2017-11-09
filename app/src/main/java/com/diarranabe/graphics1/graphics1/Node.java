@@ -41,7 +41,7 @@ public class Node {
     public Node(int x, int y, String etiquete) {
         this.x = x;
         this.y = y;
-        this.color = color;
+        this.color = DEFAULT_COLOR;
         this.etiquete = etiquete;
         setRadiaus();
     }
@@ -95,16 +95,18 @@ public class Node {
      * Met un rayon en fonction de l'etiquete
      */
     public void setRadiaus() {
-        switch (etiquete) {
-            case "":
-                this.width = DEFAULT_RADIUS;
-                break;
-            case "node":
-                this.width = DEFAULT_RADIUS;
-                break;
-            default:
-                this.width = etiquete.length() * CHAR_LENGTH;
+        if (this.etiquete.length()<3){
+            this.width = DEFAULT_RADIUS;
+        }else {
+            switch (etiquete) {
+                case "node":
+                    this.width = DEFAULT_RADIUS;
+                    break;
+                default:
+                    this.width = etiquete.length() * CHAR_LENGTH;
+            }
         }
+
     }
 
     /**

@@ -1,45 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout
+<RelativeLayout
 
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:background="@android:color/background_light"
-        android:weightSum="1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
 
-        android:layout_width="match_parent"
-        android:layout_height="272dp">
+    android:background="@android:color/background_light"
+    android:weightSum="1">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/node_settings" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/node_settings"
+        android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView2"
-            android:layout_marginTop="29dp"
-            android:text="@string/label" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="25dp"
+        android:text="@string/label"
+        android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/plain_text_input"
+        android:id="@+id/node_label_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColorLink="@color/colorPrimary" />
 
-        <Button
-            android:id="@+id/dismiss"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:background="@android:color/darker_gray"
-            android:text="@string/cancel" />
+    <Button
+        android:id="@+id/dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/savebtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="?attr/colorButtonNormal"
+        android:text="@string/cancel"
+        android:textSize="12sp" />
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/choosecolorbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/node_label_input"
+        android:layout_marginTop="11dp"
+        android:text="Change color" />
+
+    <Button
+        android:id="@+id/savebtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/choosecolorbtn"
+        android:layout_marginTop="25dp"
+        android:background="@android:color/holo_blue_light"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:text="Save"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/deletebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/choosecolorbtn"
+        android:layout_alignBottom="@+id/choosecolorbtn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Delete"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/nodelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView2"
+        android:text="NodeLabel"
+        android:textColor="@color/colorPrimary" />
+
+</RelativeLayout>

@@ -101,6 +101,8 @@ public class Graph {
             Node node = new Node(x, y);
             node = new Node(y, x);
             node.setColor(getRandomColor());
+            int num = getNoeuds().size()+1;
+            node.setEtiquete(""+num);
             boolean add = addNode(node);
             while (!add) {
                 x = Node.getRandomCoord(MAX_X);
@@ -166,13 +168,13 @@ public class Graph {
      */
     public boolean addNode(Node node) {
         boolean overlap = false;
-
         Iterator<Node> i = nodes.iterator();
+        baka:
         while (i.hasNext()) {
-            Node n = (Node) i.next();
+            Node n = i.next();
             if (Node.overlap(n, node)) {
                 overlap = true;
-                break;
+                break baka;
             }
         }
         if (!overlap) {
