@@ -24,6 +24,7 @@ public class Arc {
         this.color = debut.getColor() ;
         this.debut = debut;
         this.fin = fin;
+        this.color = debut.getColor();
     }
 
     public Node getDebut() {
