@@ -95,5 +95,4 @@ public class OptionDialogClass extends Dialog {
             }
         });
     }
-
 }
