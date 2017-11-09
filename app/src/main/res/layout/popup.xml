@@ -1,98 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+
+
     android:layout_height="wrap_content"
-
-
     android:background="@android:color/background_light"
     android:weightSum="1">
 
     <Button
         android:id="@+id/defaultcolorbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView2"
-        android:text="Choose default color" />
+        android:layout_width="202dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Choose default color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="309dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:text="@string/node_settings"
-        android:textSize="20sp" />
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/node_label_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/nodelabel"
+        android:layout_marginEnd="64dp"
+        android:layout_marginStart="64dp"
         android:inputType="text"
-        android:textColorLink="@color/colorPrimary" />
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nodelabel" />
 
     <Button
         android:id="@+id/dismiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/savebtn"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:background="?attr/colorButtonNormal"
         android:text="@string/cancel"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savebtn" />
 
     <Button
         android:id="@+id/choosecolorbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/node_label_input"
-        android:layout_marginTop="35dp"
-        android:text="Change color" />
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
+        android:text="Change color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/node_label_input" />
 
     <Button
         android:id="@+id/savebtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/choosecolorbtn"
+        android:layout_marginEnd="76dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="17dp"
         android:background="@android:color/holo_blue_light"
         android:backgroundTint="@android:color/holo_blue_dark"
         android:text="Save"
-        android:textColor="@android:color/white" />
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choosecolorbtn" />
 
     <Button
         android:id="@+id/deletebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/choosecolorbtn"
-        android:layout_alignBottom="@+id/choosecolorbtn"
-        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="52dp"
         android:background="@android:color/holo_red_light"
         android:text="Delete"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        app:layout_constraintBaseline_toBaselineOf="@+id/choosecolorbtn"
+        app:layout_constraintBottom_toBottomOf="@+id/choosecolorbtn"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/nodelabel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/defaultcolorbtn"
+        android:layout_height="31dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:text="NodeLabel"
-        android:textColor="@color/colorPrimary" />
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/defaultcolorbtn" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/defaultcolorbtn"
-        android:layout_alignParentStart="true"
-        android:text="Label" />
+        android:layout_width="111dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:text="Label"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
