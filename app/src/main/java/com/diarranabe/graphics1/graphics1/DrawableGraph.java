@@ -66,6 +66,7 @@ public class DrawableGraph extends Drawable {
         painte.setColor(Color.RED);
         etiqPaint.setColor(Color.WHITE);
         etiqPaint.setTextSize(30);
+        etiqPaint.setFakeBoldText(true);
 
         initialize();
 
@@ -94,6 +95,7 @@ public class DrawableGraph extends Drawable {
         //Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getWidth());
 
         nodePaint.setColor(node.getColor());
+        canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 9, etiqPaint);
         canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, nodePaint);
 
         //Afficher l'étiquette

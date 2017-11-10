@@ -31,9 +31,9 @@ public class OptionDialogClass extends Dialog {
 
     public OptionDialogClass(MainActivity activity){
         super(activity);
-        // TODO Auto-generated constructor stub
         this.activity = activity;
         this.activity.optionPopupVisible = true;
+        this.setCanceledOnTouchOutside(false);
     }
 
     @Override
@@ -60,6 +60,7 @@ public class OptionDialogClass extends Dialog {
                 activity.selectedNode.setEtiquete(labelInput.getText().toString());
                 activity.optionPopupVisible = false;
                 activity.selectedNode = null;
+                activity.supportView.invalidate();
                 dismiss();
             }
         });

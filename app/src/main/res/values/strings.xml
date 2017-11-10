@@ -5,10 +5,10 @@
     <string name="node_settings">Nodes settings</string>
     <string name="close">Close</string>
     <string name="set_color">Set Color</string>
-    <string name="lis_of_arc">Lis of Arc</string>
-    <string name="arc_setting">Arc Setting</string>
+    <string name="lis_of_arc">Lis of Arcs</string>
+    <string name="arc_setting">Arcs Settings</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
-    <string name="change_color">Change color</string>
-    <string name="choose_default_color">Choose default color</string>
+    <string name="change_color">Set node color</string>
+    <string name="choose_default_color">Choose nodes default color</string>
 </resources>
