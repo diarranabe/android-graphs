@@ -1,49 +1,9 @@
-package com.diarranabe.graphics1.graphics1;
+package com.diarranabe.graphics1.graphedm;
 
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.database.DatabaseErrorHandler;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.UserHandle;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.RequiresPermission;
-import android.support.annotation.StringDef;
-import android.support.annotation.StyleRes;
 import android.util.Log;
-import android.view.Display;
-import android.widget.Button;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
@@ -79,16 +39,16 @@ public class Graph {
             Node node = new Node(x, y);
             node = new Node(y, x);
             node.setColor(getRandomColor());
-            int num = getNoeuds().size()+1;
-            node.setEtiquete(""+num);
+            int num = getNoeuds().size() + 1;
+            node.setEtiquete("" + num);
             boolean add = addNode(node);
             while (!add) {
                 x = Node.getRandomCoord(MAX_X);
                 y = Node.getRandomCoord(MAX_Y);
                 node = new Node(x, y);
                 node.setColor(getRandomColor());
-                num = getNoeuds().size()+1;
-                node.setEtiquete(""+num);
+                num = getNoeuds().size() + 1;
+                node.setEtiquete("" + num);
                 add = addNode(node);
             }
         }
@@ -116,8 +76,8 @@ public class Graph {
                 y = Node.getRandomCoord(MAX_Y);
                 node = new Node(x, y);
                 node.setColor(getRandomColor());
-                num = getNoeuds().size()+1;
-                node.setEtiquete(""+num);
+                num = getNoeuds().size() + 1;
+                node.setEtiquete("" + num);
                 add = addNode(node);
             }
         }
@@ -282,8 +242,8 @@ public class Graph {
      * @param arc
      */
     public void addArc(Arc arc) {
-        if (!Node.overlap(arc.getDebut(), arc.getFin()) )
-        this.arcs.add(arc);
+        if (!Node.overlap(arc.getDebut(), arc.getFin()))
+            this.arcs.add(arc);
     }
 
     /**
@@ -296,9 +256,10 @@ public class Graph {
         if (index1 != index2) {
             Node n1 = getNoeuds().get(index1);
             Node n2 = getNoeuds().get(index2);
-            if (!Node.overlap(n1, n2) ){
-                Log.d("XXXXAD", "add arc ") ;
-            this.arcs.add(new Arc(n1, n2));}
+            if (!Node.overlap(n1, n2)) {
+                Log.d("XXXXAD", "add arc ");
+                this.arcs.add(new Arc(n1, n2));
+            }
         }
 
     }
@@ -368,8 +329,11 @@ public class Graph {
         int i = 0;
         int e = 0;
         for (Arc arc : arcs) {
-            if (arc.containsbegin(nodeBegin)){ arcOutOfMe.add(arc); e++ ;}
-            i++ ;
+            if (arc.containsbegin(nodeBegin)) {
+                arcOutOfMe.add(arc);
+                e++;
+            }
+            i++;
         }
         Log.e("XXXXY", "All sieze arc = " + i);
         Log.e("XXXXY", "of me  sieze arc = " + e);

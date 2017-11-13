@@ -1,7 +1,4 @@
-package com.diarranabe.graphics1.graphics1;
-
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+package com.diarranabe.graphics1.graphedm;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.diarranabe.graphics1.graphics1;
+package com.diarranabe.graphics1.graphedm;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by matok on 09/11/2017.
@@ -69,7 +67,6 @@ public class AdapterSpiner extends ArrayAdapter<Arc> {
     @SuppressLint("SetTextI18n")
     private View createItemView(int position, View convertView, ViewGroup parent) {
         View view;
-        //  final Produit produit = (Produit) getItem(position);
         if (convertView == null) {
             view = LayoutInflater.from(parent.getContext()).inflate(mResource, parent, false);
         } else {

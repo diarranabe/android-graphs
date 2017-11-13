@@ -142,7 +142,7 @@
         android:layout_width="211dp"
         android:layout_height="43dp"
         android:layout_marginTop="8dp"
-        android:text="Setting Arc"
+        android:text="Arcs settings"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintHorizontal_bias="0.502"

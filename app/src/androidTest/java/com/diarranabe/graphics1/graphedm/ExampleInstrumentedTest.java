@@ -1,4 +1,4 @@
-package com.diarranabe.graphics1.graphics1;
+package com.diarranabe.graphics1.graphedm;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

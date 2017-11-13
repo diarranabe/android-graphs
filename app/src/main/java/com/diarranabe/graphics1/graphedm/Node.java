@@ -1,4 +1,4 @@
-package com.diarranabe.graphics1.graphics1;
+package com.diarranabe.graphics1.graphedm;
 
 import android.graphics.Color;
 
@@ -96,14 +96,14 @@ public class Node {
      */
     public void setRadiaus() {
         int length = this.etiquete.length();
-        if (length<4){
+        if (length < 4) {
             this.width = DEFAULT_RADIUS;
-        }else if (length<=10){
-            this.width = DEFAULT_RADIUS+ length * length;
-        }else if (length<=25) {
-            this.width = DEFAULT_RADIUS+ length * length - length*(length/2) - length;
-        }else {
-            this.width = DEFAULT_RADIUS+ length * length - length*(length/2) - length*10;
+        } else if (length <= 10) {
+            this.width = DEFAULT_RADIUS + length * length;
+        } else if (length <= 25) {
+            this.width = DEFAULT_RADIUS + length * length - length * (length / 2) - length;
+        } else {
+            this.width = DEFAULT_RADIUS + length * length - length * (length / 2) - length * 10;
         }
 
     }
@@ -157,7 +157,7 @@ public class Node {
     public boolean overlap(Node n) {
         int margY = Math.abs(y - n.getY());
         int margX = Math.abs(x - n.getX());
-        return  (margX< (this.getWidth()) + (n.getWidth())) && (margY< (this.getWidth()) + (n.getWidth()));
+        return (margX < (this.getWidth()) + (n.getWidth())) && (margY < (this.getWidth()) + (n.getWidth()));
     }
 
     /**
@@ -179,22 +179,20 @@ public class Node {
      * @return true ou false
      */
     public boolean isClose(int x, int y) {
-        return this.overlap(new Node(x,y));
+        return this.overlap(new Node(x, y));
     }
 
     /**
-     *
      * @param max
      * @return une coordonnée comprise entre 100 et max-100 de manière aléatoire
      */
     public static int getRandomCoord(int max) {
         Random rand = new Random();
-        int x = rand.nextInt(max) + 1-100;
-        return 100+(x / DEFAULT_RADIUS) * DEFAULT_RADIUS;
+        int x = rand.nextInt(max) + 1 - 100;
+        return 100 + (x / DEFAULT_RADIUS) * DEFAULT_RADIUS;
     }
 
     /**
-     *
      * @return Les informations d'un node en String
      */
     public String toString() {

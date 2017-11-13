@@ -1,10 +1,7 @@
-package com.diarranabe.graphics1.graphics1;
+package com.diarranabe.graphics1.graphedm;
 
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -29,7 +26,7 @@ public class OptionDialogClass extends Dialog {
     private EditText labelInput;
     private TextView nodeLabel;
 
-    public OptionDialogClass(MainActivity activity){
+    public OptionDialogClass(MainActivity activity) {
         super(activity);
         this.activity = activity;
         this.activity.optionPopupVisible = true;
@@ -67,8 +64,7 @@ public class OptionDialogClass extends Dialog {
 
         no.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 activity.optionPopupVisible = false;
                 dismiss();
             }

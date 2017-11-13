@@ -1,4 +1,4 @@
-package com.diarranabe.graphics1.graphics1;
+package com.diarranabe.graphics1.graphedm;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -7,15 +7,10 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created by matok on 24/10/2017.
@@ -37,7 +32,7 @@ public class DrawableGraph extends Drawable {
     int umpx = 0;
     int umpy = 0;
 
-    Graph graph ;
+    Graph graph;
     private Arc tempArc = null; // arc temporaire pour suivre les mouvements
 
     public Arc getTempArc() {
@@ -48,7 +43,7 @@ public class DrawableGraph extends Drawable {
         this.tempArc = tempArc;
     }
 
-    public void setTempArcNull(){
+    public void setTempArcNull() {
         this.tempArc = null;
     }
 
@@ -75,9 +70,9 @@ public class DrawableGraph extends Drawable {
 
     public void initialize() {
 
-        linePath.moveTo(0,0);
-        linePath.moveTo(150,150);
-        canvas.drawPath(linePath,paintr);
+        linePath.moveTo(0, 0);
+        linePath.moveTo(150, 150);
+        canvas.drawPath(linePath, paintr);
         int ic = 0;
         for (Node node : graph.getNoeuds()) {
             drawNode(node);
@@ -92,25 +87,24 @@ public class DrawableGraph extends Drawable {
     }
 
     public void drawNode(Node node) {
-        //Log.d("XXXX", " DRAW --> nodeH => " + node.getX() + " nodeW => " + node.getY() + " nodeName => " + node.getEtiquete() + " diametre +>" + node.getWidth());
 
         nodePaint.setColor(node.getColor());
-        canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 9, etiqPaint);
-        canvas.drawCircle(node.getX(),node.getY()  , node.getWidth() + 3, nodePaint);
+        canvas.drawCircle(node.getX(), node.getY(), node.getWidth() + 9, etiqPaint);
+        canvas.drawCircle(node.getX(), node.getY(), node.getWidth() + 3, nodePaint);
 
         //Afficher l'étiquette
-        int xPos = node.getX() - (int)(etiqPaint.measureText(node.getEtiquete())/2);
-        int yPos = (int) (node.getY() - ((etiqPaint.descent() + etiqPaint.ascent()) / 2)) ;
+        int xPos = node.getX() - (int) (etiqPaint.measureText(node.getEtiquete()) / 2);
+        int yPos = (int) (node.getY() - ((etiqPaint.descent() + etiqPaint.ascent()) / 2));
         canvas.drawText(node.getEtiquete(), xPos, yPos, etiqPaint);
     }
 
-    public void unDrawNode(Node node)  {
+    public void unDrawNode(Node node) {
         canvas.drawCircle(node.getX(), node.getY(), node.getWidth() + 3, painte);
     }
 
     @Override
     public void draw(@NonNull Canvas canvas) {
-        this.canvas =  canvas ;
+        this.canvas = canvas;
 
         drawArcs();
 
@@ -130,25 +124,25 @@ public class DrawableGraph extends Drawable {
         Log.e("XXXX", " ===> ic =  " + ic);
     }
 
-    public void drawArcs( ){
+    public void drawArcs() {
         Log.e("XXXX", " ===> ic = ARCS START ");
         for (Arc arcs : graph.getArcs()) {
             drawArc(arcs);
         }
-        if (this.tempArc != null){
+        if (this.tempArc != null) {
             drawArc(tempArc);
         }
     }
 
-    public void drawArc(Arc arc){
+    public void drawArc(Arc arc) {
 
         int x1 = arc.getDebut().getX();
         int x2 = arc.getFin().getX();
         int y1 = arc.getDebut().getY();
         int y2 = arc.getFin().getY();
 
-        int mx =20+ (x1+x2)/2;
-        int my =20+ (y1+y2)/2;
+        int mx = 20 + (x1 + x2) / 2;
+        int my = 20 + (y1 + y2) / 2;
 
         float[] midPoint = {0f, 0f};
         float[] tangent = {0f, 0f};

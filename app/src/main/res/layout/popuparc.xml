@@ -29,7 +29,7 @@
         android:layout_marginTop="8dp"
 
         android:gravity="center"
-        android:text="@string/lis_of_arc"
+        android:text="Arcs"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,17 +41,17 @@
         android:layout_width="326dp"
         android:layout_height="37dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
+        android:background="?attr/colorButtonNormal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/arcsetcolor"
-        android:layout_width="152dp"
-        android:layout_height="48dp"
+        android:layout_width="195dp"
+        android:layout_height="47dp"
         android:layout_marginTop="16dp"
-        android:text="@string/set_color"
+        android:text="selected arc's color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -59,7 +59,7 @@
     <Button
         android:id="@+id/arcclose"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/holo_red_light"
@@ -69,5 +69,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/arcsetcolor"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="select an arc"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        tools:layout_editor_absoluteX="121dp" />
 
 </android.support.constraint.ConstraintLayout>

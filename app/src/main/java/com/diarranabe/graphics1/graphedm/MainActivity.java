@@ -1,4 +1,4 @@
-package com.diarranabe.graphics1.graphics1;
+package com.diarranabe.graphics1.graphedm;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -99,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
                             myDraw.setTempArc(tempArc);
                             supportView.invalidate();
                         }
-                        long time = System.currentTimeMillis() - touchStartTime ;
-                        if ( time > LONG_TOUCH_DURATION) {
-                            Log.d("XXXXT"," time diff = " + time) ;
+                        long time = System.currentTimeMillis() - touchStartTime;
+                        if (time > LONG_TOUCH_DURATION) {
+                            Log.d("XXXXT", " time diff = " + time);
                             if ((startNode != null)) {
-                                if ( (tempNode.overlap(startNode))) {// pas encore fais de mouvement ou pas encore loin
+                                if ((tempNode.overlap(startNode))) {// pas encore fais de mouvement ou pas encore loin
                                     if (!optionPopupVisible) {
                                         optionPopupVisible = true;
                                         selectedNode = startNode;
