@@ -73,7 +73,7 @@ public class OptionDialogClass extends Dialog {
         chooseColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.showColorPopup();
+                activity.showNodeColorPopup();
             }
         });
 

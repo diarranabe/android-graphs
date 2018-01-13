@@ -9,6 +9,6 @@
     <string name="arc_setting">Arcs Settings</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
-    <string name="change_color">Set node color</string>
-    <string name="choose_default_color">Choose nodes default color</string>
+    <string name="change_color">Node color</string>
+    <string name="choose_default_color">Set nodes default color</string>
 </resources>

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         graph = new Graph(4);
     }
 
-    private static Graph graph;
+    protected static Graph graph;
 
     List<Integer> closestColorsList = new ArrayList<Integer>();
 
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * color for Node
      */
-    public void showColorPopup() {
+    public void showNodeColorPopup() {
         final ColorPickerDialog dialog = ColorPickerDialog.newInstance(
                 ColorPickerDialog.SELECTION_SINGLE,
                 (ArrayList<Integer>) closestColorsList,

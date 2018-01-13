@@ -20,7 +20,7 @@ public class Node {
     public static int DEFAULT_COLOR = Color.BLUE;
     public static int DEFAULT_RADIUS = 45;
     public static int CHAR_LENGTH = 6;
-    public static String DEFAULT_ETIQ = "node";
+    public static String DEFAULT_ETIQ = "";
 
     public Node(int x, int y) {
         this.x = x;
@@ -72,6 +72,14 @@ public class Node {
 
     public String getEtiquete() {
         return etiquete;
+    }
+
+    public String getShortEtiquete() {
+        if (this.getEtiquete().length()<5){
+            return this.getEtiquete();
+        }else {
+            return this.getEtiquete().substring(0,4)+"...";
+        }
     }
 
     public void setEtiquete(String etiquete) {
