@@ -6,7 +6,9 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.graphics.RectF;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,7 +20,7 @@ import android.util.Log;
 
 public class DrawableGraph extends Drawable {
 
-    private Paint nodePaint, painte, paintr, etiqPaint;
+    private Paint nodePaint, painte, paintr, etiqPaint, paintEtiqArc;
     private Canvas canvas = new Canvas();
 
     private Path linePath = new Path();
@@ -62,6 +64,11 @@ public class DrawableGraph extends Drawable {
         etiqPaint.setColor(Color.WHITE);
         etiqPaint.setTextSize(30);
         etiqPaint.setFakeBoldText(true);
+
+        paintEtiqArc = new Paint();
+        paintEtiqArc.setColor(Color.RED);
+        paintEtiqArc.setTextSize(30);
+        paintEtiqArc.setFakeBoldText(true);
 
         initialize();
 
@@ -135,27 +142,52 @@ public class DrawableGraph extends Drawable {
     }
 
     public void drawArc(Arc arc) {
-
+        painte.setColor(arc.getColor());
         int x1 = arc.getDebut().getX();
         int x2 = arc.getFin().getX();
         int y1 = arc.getDebut().getY();
         int y2 = arc.getFin().getY();
+        int arcWidth = 20;
+        final Path path = new Path();
+        int midX = x1 + ((x2 - x1) / 2);
+        int midY = y1 + ((y2 - y1) / 2);
+        float xDiff = midX - x1;
+        float yDiff = midY - y1;
+        double angle = (Math.atan2(yDiff, xDiff) * (180 / Math.PI)) - 90;
+        double angleRadians = Math.toRadians(angle);
+        int curveRadius = -180;
+        float pointX = (float) (midX + curveRadius * Math.cos(angleRadians));
+        float pointY = (float) (midY + curveRadius * Math.sin(angleRadians));
 
-        int mx = 20 + (x1 + x2) / 2;
-        int my = 20 + (y1 + y2) / 2;
+        /**
+         * L'arc
+         */
+        path.moveTo(x1, y1);
+        path.cubicTo(x1, y1, pointX, pointY, x2, y2);
+        painte.setAntiAlias(true);
+        painte.setStyle(Paint.Style.STROKE);
+        painte.setStrokeWidth(arcWidth);
+        canvas.drawPath(path, painte);
 
+        /**
+         * Etiquette
+         */
         float[] midPoint = {0f, 0f};
         float[] tangent = {0f, 0f};
-
-        Path edgePath = new Path();
-        edgePath.moveTo(x1, y1);
-
-        PathMeasure pm = new PathMeasure(edgePath, false);
+        PathMeasure pm = new PathMeasure(path, false);
         pm.getPosTan(pm.getLength() * 0.50f, midPoint, tangent);
 
-        edgePath.quadTo(mx, my, x2, y2);
-        painte.setColor(arc.getColor());
-        canvas.drawPath(edgePath, painte);
+        //Afficher l'étiquette
+        int xPos = (int) midPoint[0] - (int) (etiqPaint.measureText("nabe") / 2);
+        int yPos = (int) (midPoint[1] - ((etiqPaint.descent() + etiqPaint.ascent()) / 2));
+        canvas.drawText("nabe", xPos, yPos, paintEtiqArc);
+
+        //draw arrowhead on path start
+      /*  path.moveTo(x2,y2 ); //move to the center of first circle
+        path.lineTo(x2-arcRadius, y2-arcRadius);//draw the first arrowhead line to the left
+        path.moveTo(x2,y2 );//move back to the center
+        path.lineTo(x2+arcRadius, y2-arcRadius);//draw the next arrowhead line to the right
+*/
     }
 
     @Override
@@ -170,6 +202,6 @@ public class DrawableGraph extends Drawable {
 
     @Override
     public int getOpacity() {
-        return 0;
+        return PixelFormat.UNKNOWN;
     }
 }
