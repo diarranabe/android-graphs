@@ -10,6 +10,8 @@ Cette application permet de faire des graphes avec des étiquettes sur les noeud
 
 De les déplacer ou changer leurs couleurs
 
+![Screenshot](https://github.com/diarranabe/tpMobGraphics/blob/master/Screenshot_20180114-014006.png)
+
 # Manuel d'utilisateur GrapheDM 2.0
 
 Au démarrage il y a 4 noeuds qui apparaissent de manière aléatoire avec 4 arcs au maximum.
