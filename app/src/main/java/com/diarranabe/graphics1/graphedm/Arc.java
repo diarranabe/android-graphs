@@ -10,13 +10,14 @@ import java.util.Collection;
  */
 
 public class Arc {
+    private static final int SELECT_DISTANCE = 20;
     private Node debut;
     private Node fin;
     private int color;
     private String label;
+    private float [] midPoint;
 
     public static int ARC_WIDTH= 20;
-
 
 
     public Arc(Node debut, Node fin) {
@@ -25,6 +26,8 @@ public class Arc {
         this.fin = fin;
         this.color = debut.getColor();
         this.label = this.debut.getShortEtiquete()+" --> "+this.fin.getShortEtiquete();
+        midPoint = new float[]{0,0};
+        setMidPoint();
     }
 
     public Node getDebut() {
@@ -64,6 +67,14 @@ public class Arc {
         this.label = label;
     }
 
+    public float[] getMidPoint() {
+        return midPoint;
+    }
+
+    public void setMidPoint(float[] midPoint) {
+        this.midPoint = midPoint;
+    }
+
     /**
      * @param node
      * @return true si node est concerné par l'arc
@@ -99,11 +110,27 @@ public class Arc {
         return debut.toString() + " --->  " + fin.toString();
     }
 
+    public String details(){
+        return debut.getShortEtiquete()+" --> "+fin.getShortEtiquete()+", label: "+label+", mid:("+midPoint[0]+","+midPoint[1]+")";
+    }
+
     /**
      * Le path de l'arc
      * @return
      */
     public Path getPath(){
+        setMidPoint();
+        int x1 = this.getDebut().getX();
+        int x2 = this.getFin().getX();
+        int y1 = this.getDebut().getY();
+        int y2 = this.getFin().getY();
+        final Path path = new Path();
+        path.moveTo(x1, y1);
+        path.cubicTo(x1, y1, midPoint[0], midPoint[1], x2, y2);
+        return path;
+    }
+
+    public void setMidPoint (){
         int x1 = this.getDebut().getX();
         int x2 = this.getFin().getX();
         int y1 = this.getDebut().getY();
@@ -115,13 +142,15 @@ public class Arc {
         float yDiff = midY - y1;
         double angle = (Math.atan2(yDiff, xDiff) * (180 / Math.PI)) - 90;
         double angleRadians = Math.toRadians(angle);
-        int curveRadius = -180;
+        int curveRadius = -360;
         float pointX = (float) (midX + curveRadius * Math.cos(angleRadians));
         float pointY = (float) (midY + curveRadius * Math.sin(angleRadians));
+        midPoint[0] = pointX;
+        midPoint[1] = pointY;
+    }
 
-        path.moveTo(x1, y1);
-        path.cubicTo(x1, y1, pointX, pointY, x2, y2);
-        return path;
+    public boolean isSelected(int x,int y){
+        return (this.midPoint[0] - x < SELECT_DISTANCE) && (this.midPoint[1] - x < SELECT_DISTANCE);
     }
 
     /**

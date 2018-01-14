@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Node startNode = graph.selectedNode(downx, downy);
                         Node tempNode = new Node(umpx, umpy);
+                        Arc arc = graph.selectedArc(umpx, umpy);
                         if ((startNode != null) && (tempNode != null)) {
                             Arc tempArc = new Arc(startNode, tempNode);
                             myDraw.setTempArc(tempArc);
@@ -101,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         long time = System.currentTimeMillis() - touchStartTime;
                         if (time > LONG_TOUCH_DURATION) {
-                            Log.d("XXXXT", " time diff = " + time);
                             if ((startNode != null)) {
                                 if ((tempNode.overlap(startNode))) {// pas encore fais de mouvement ou pas encore loin
                                     if (!optionPopupVisible) {

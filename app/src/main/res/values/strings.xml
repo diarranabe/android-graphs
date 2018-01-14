@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">GrapheDM</string>
+    <string name="app_name">GrapheDM 2.0</string>
     <string name="label">Label</string>
     <string name="cancel">Cancel</string>
     <string name="node_settings">Nodes settings</string>
     <string name="close">Close</string>
     <string name="set_color">Set Color</string>
-    <string name="lis_of_arc">Lis of Arcs</string>
+    <string name="lis_of_arc">List of Arcs</string>
     <string name="arc_setting">Arcs Settings</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>

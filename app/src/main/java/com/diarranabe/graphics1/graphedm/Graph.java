@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 /**
@@ -15,8 +16,8 @@ import java.util.Random;
 
 public class Graph {
 
-    public int MAX_X = 700;
-    public int MAX_Y = 1000;
+    public int MAX_X = 600;
+    public int MAX_Y = 800;
     private List<Node> nodes = new ArrayList<Node>();/*Les nodes du graphe*/
     private List<Arc> arcs = new ArrayList<Arc>();/*Les arcs qui relient les nodes*/
     public static List<Integer> nodeColors = new ArrayList<>();/*Les couleurs possibles pour les nodes*/
@@ -265,6 +266,26 @@ public class Graph {
     }
 
     /**
+     * Retourne l'arc selectionné ou null
+     *
+     * @param x
+     * @param y
+     * @return arc
+     */
+    public Arc selectedArc(int x, int y) {
+        boolean overlap = false;
+
+        ListIterator<Arc> it = arcs.listIterator(arcs.size());
+        while (it.hasPrevious()) {
+            Arc arc = it.previous();
+            if (arc.isSelected(x,y)) {
+                return arc;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Supprime un Arc du graphe
      *
      * @param arc
@@ -335,9 +356,6 @@ public class Graph {
             }
             i++;
         }
-        Log.e("XXXXY", "All sieze arc = " + i);
-        Log.e("XXXXY", "of me  sieze arc = " + e);
-
         return arcOutOfMe;
     }
 

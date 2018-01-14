@@ -110,5 +110,4 @@ public class OptionDialogArc extends Dialog {
         });
 
     }
-
 }

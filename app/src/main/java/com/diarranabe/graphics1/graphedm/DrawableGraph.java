@@ -21,9 +21,10 @@ import static com.diarranabe.graphics1.graphedm.Arc.ARC_WIDTH;
 public class DrawableGraph extends Drawable {
 
     private static final int LABEL_TEXT_SIZE = 30;
-    private Paint arcEtiqBackPaint;
     private Paint nodePaint;
     private Paint arcPaint;
+    private Paint whitePaint;
+    private Paint arcEtiqBackPaint;
     private Paint paint;
     private Paint nodeEtiqPaint;
     private Paint arcEtiqPaint;
@@ -59,6 +60,18 @@ public class DrawableGraph extends Drawable {
         arcPaint.setStrokeWidth(ARC_WIDTH);
         arcPaint.setColor(Color.RED);
 
+
+        whitePaint = new Paint();
+        whitePaint.setAntiAlias(true);
+        whitePaint.setStyle(Paint.Style.STROKE);
+        whitePaint.setStrokeWidth(ARC_WIDTH+5);
+        whitePaint.setColor(Color.WHITE);
+
+        arcEtiqPaint = new Paint();
+        arcEtiqPaint.setColor(Color.WHITE);
+        arcEtiqPaint.setTextSize(LABEL_TEXT_SIZE);
+        arcEtiqPaint.setFakeBoldText(true);
+
         paint = new Paint();
         paint.setColor(Color.RED);
 
@@ -67,13 +80,10 @@ public class DrawableGraph extends Drawable {
         nodeEtiqPaint.setTextSize(LABEL_TEXT_SIZE);
         nodeEtiqPaint.setFakeBoldText(true);
 
-        arcEtiqPaint = new Paint();
-        arcEtiqPaint.setColor(Color.WHITE);
-        arcEtiqPaint.setTextSize(LABEL_TEXT_SIZE);
-        arcEtiqPaint.setFakeBoldText(true);
 
         arcEtiqBackPaint = new Paint();
         arcEtiqBackPaint.setColor(Color.GRAY);
+
     }
 
     public void drawNode(Node node) {
@@ -123,6 +133,7 @@ public class DrawableGraph extends Drawable {
 
     public void drawArc(Arc arc) {
         arcPaint.setColor(arc.getColor());
+        canvas.drawPath(arc.getPath(), whitePaint);
         canvas.drawPath(arc.getPath(), arcPaint);
 
         /**
